@@ -47,7 +47,7 @@ A simple 2-stage pipeline, full AXI4 interconnect, and comprehensive debug suppo
 
 ---
 
-## ðŸ—ºï¸ Memory Map
+## Memory Map
 
 | Range | Size | Component | Description |
 | :--- | :--- | :--- | :--- |
@@ -62,7 +62,7 @@ A simple 2-stage pipeline, full AXI4 interconnect, and comprehensive debug suppo
 
 ---
 
-## âš¡ Quick Start
+## Quick Start
 
 ### 📋 Prerequisites
 - **Simulation:** Verilator, ModelSim, or Vivado XSim.
