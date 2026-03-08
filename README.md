@@ -9,10 +9,10 @@ A simple 2-stage pipeline, full AXI4 interconnect, and comprehensive debug suppo
 ## 🌟 Project Highlights
 
 - **Core Architecture:** `RV32IMC_Zicsr_Zifencei` (No Atomic 'A' extension).
-- **Pipeline:** High-efficiency 2-Stage (Stage 1: IF/ID | Stage 2: EX/MEM/WB).
+- **Pipeline:** 2-Stage (Stage 1: IF/ID | Stage 2: EX/MEM/WB).
 - **Memory System:** Multi-master AXI4 Interconnect with APB peripheral bridging.
 - **Debug:** Fully compliant with RISC-V Debug Specification 0.13 (JTAG DTM).
-- **Rich Peripherals:** UART, GPIO, ADC/DAC Interface, CLINT, PLIC.
+- **Peripherals:** UART, GPIO, CLINT, PLIC.
 
 ---
 
@@ -79,12 +79,6 @@ The top-level module is `riscv32KC2_system`. You can run the integrated testbenc
 ### 💻 Software Development
 Navigate to the [Software SDK](software/framework/framework-riscv32KC2-sdk/README.md) to start developing firmware.
 
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**. See the `LICENSE` file for full text.
 
 
 
