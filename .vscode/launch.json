@@ -1,0 +1,115 @@
+﻿{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug RISC-V (OpenOCD + GDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/software/Project_riscv32KC2/.pio/build/riscv32KC2/firmware.elf",
+            "cwd": "${workspaceFolder}/software/Project_riscv32KC2",
+            "MIMode": "gdb",
+            "miDebuggerPath": "${env:USERPROFILE}\\.platformio\\packages\\toolchain-riscv\\bin\\riscv32-unknown-elf-gdb.exe",
+            "miDebuggerServerAddress": "localhost:3333",
+            "serverStarted": "GDB server started",
+            "debugServerArgs": "-f ${workspaceFolder}/software/Project_riscv32KC2/openocd.cfg",
+            "serverLaunchTimeout": 10000,
+            "preLaunchTask": "Start OpenOCD",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Connect to target",
+                    "text": "target remote localhost:3333"
+                },
+                {
+                    "description": "Reset and halt",
+                    "text": "monitor reset halt"
+                },
+                {
+                    "description": "Load firmware",
+                    "text": "load"
+                }
+            ],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "logging": {
+                "engineLogging": true
+            }
+        },
+        {
+            "name": "Debug RISC-V (PlatformIO pio debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/software/Project_riscv32KC2/.pio/build/riscv32KC2/firmware.elf",
+            "cwd": "${workspaceFolder}/software/Project_riscv32KC2",
+            "MIMode": "gdb",
+            "miDebuggerPath": "${env:USERPROFILE}\\.platformio\\packages\\toolchain-riscv\\bin\\riscv32-unknown-elf-gdb.exe",
+            "miDebuggerServerAddress": "localhost:3333",
+            "preLaunchTask": "Start PlatformIO Debug Server",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Connect to target",
+                    "text": "target remote localhost:3333"
+                },
+                {
+                    "description": "Reset and halt",
+                    "text": "monitor reset halt"
+                },
+                {
+                    "description": "Load firmware",
+                    "text": "load"
+                }
+            ],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "logging": {
+                "engineLogging": false
+            }
+        },
+        {
+            "name": "Debug RISC-V (GDB only - OpenOCD must be running)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/software/Project_riscv32KC2/.pio/build/riscv32KC2/firmware.elf",
+            "cwd": "${workspaceFolder}/software/Project_riscv32KC2",
+            "MIMode": "gdb",
+            "miDebuggerPath": "${env:USERPROFILE}\\.platformio\\packages\\toolchain-riscv\\bin\\riscv32-unknown-elf-gdb.exe",
+            "miDebuggerServerAddress": "localhost:3333",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Connect to target",
+                    "text": "target remote localhost:3333"
+                },
+                {
+                    "description": "Reset and halt",
+                    "text": "monitor reset halt"
+                },
+                {
+                    "description": "Load firmware",
+                    "text": "load"
+                }
+            ],
+            "stopAtEntry": false,
+            "externalConsole": false
+        }
+    ]
+}
+

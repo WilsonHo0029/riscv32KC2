@@ -1,0 +1,117 @@
+================================================================================
+riscv32KC2 PROJECT FILE STRUCTURE
+================================================================================
+
+riscv32KC2/ (Project Root)
+│
+├── README.md                               [Project high-level overview]
+├── FILE_STRUCTURE.txt                      [Current directory map]
+│
+├── software/                               [Software & Firmware directory]
+│   ├── Project_riscv32KC2/                 [Main firmware project]
+│   │   ├── src/                            [Project C source files]
+│   │   ├── build/                          [Build artifacts (.elf, .bin, .hex)]
+│   │   ├── firmware_output/                [Verilog-ready memory files]
+│   │   ├── compile_manual.bat              [Manual compilation script]
+│   │   ├── upload.bat                      [Firmware upload script (JTAG/FTDI)]
+│   │   ├── linker.lds                      [Linker script for IRAM/DRAM]
+│   │   └── openocd_ftdi.cfg                [OpenOCD configuration]
+│   │
+│   ├── framework/                          [BSP and SDK framework]
+│   │   └── framework-riscv32KC2-sdk/
+│   │       ├── bsp/
+│   │       │   ├── env/                    [Startup and runtime environment]
+│   │       │   ├── include/                [SDK header files]
+│   │       │   └── src/                    [SDK driver sources]
+│   │       └── libwrap/                    [System call wrappers]
+│   │
+│   └── tools/                              [Firmware conversion tools]
+│       ├── objcopy.exe                     [Binary conversion]
+│       └── objdump.exe                     [Disassembler]
+│
+└── hdl/                                    [Hardware Description Language]
+    │
+    ├── fpga/                               [Vivado Project & FPGA constraints]
+    │   └── riscv32KC2.xpr                  [Vivado project file]
+    │
+    ├── testbench/                          [Simulation suite]
+    │   ├── tb_riscv32KC2_system.v          [Main system testbench]
+    │   ├── riscv32KC2.args                 [Compiler arguments]
+    │   └── wave.do                         [Waveform configuration]
+    │
+    └── rtl/                                [Register Transfer Level Source]
+        │
+        ├── FileMap.txt                     [RTL build order map]
+        ├── Memory_Map.txt                  [System address map]
+        │
+        ├── riscv_core/                     [RV32IMC Pipeline]
+        │   ├── riscv_core.v                [Core top-level]
+        │   ├── riscv_pipeline.v            [2-stage pipeline controller]
+        │   ├── riscv_if_stage.v            [Instruction Fetch Stage]
+        │   ├── riscv_exu.v                 [Execution unit]
+        │   ├── riscv_decoder.v             [Instruction decoder]
+        │   ├── riscv_regfile.v             [32-entry GPR file]
+        │   ├── riscv_alu.v                 [ALU implementation]
+        │   ├── riscv_multdiv.v             [M-extension hardware]
+        │   ├── riscv_csr.v                 [CSR registers/logic]
+        │   ├── riscv_axi_ifetch.v          [AXI Fetch Interface]
+        │   └── riscv_axi_data.v            [AXI Data Interface]
+        │
+        ├── bus/                            [AXI4-Lite Interconnect]
+        │   ├── riscv32KC2_bus.v            [Main system bus]
+        │   ├── axi_lite_mux2.v             [AXI Master Selector]
+        │   ├── axi_lite_demux.v            [AXI Address Decoder]
+        │   └── axi2apb_bridge.v            [AXI to APB protocol bridge]
+        │
+        ├── debug_module/                   [RISC-V Debug (0.13)]
+        │   ├── riscv_debug_block.v         [Debug top-level]
+        │   ├── riscv_jtag_dtm.v            [JTAG DTM module]
+        │   └── riscv_debug_module.v        [Execution-based DM]
+        │
+        ├── clint/                          [Core Local Interruptor]
+        │   └── axi_riscv_clint.v           [MTIME/MSIP registers]
+        │
+        ├── plic/                           [Platform Interrupt Controller]
+        │   └── axi_riscv_plic.v            [External Interrupt logic]
+        │
+        ├── ram/                            [Memory Wrappers]
+        │   └── mrom_axi_lite.v             [Boot ROM wrapper]
+        │
+        ├── peripheral/                     [System Peripherals]
+        │   ├── riscv32KC2_peripheral.v     [Peripheral subsystem top]
+        │   ├── uart/                       [8250-compatible UART]
+        │   ├── gpio/                       [Configurable GPIO]
+        │   └── ad_da_if/                   [ADC/DAC interface]
+        │
+        ├── misc/                           [Common Components]
+        │   ├── ram_model.v                 [Generic RAM simulation model]
+        │   └── booth_mult_r4.v              [Hardware multiplier logic]
+        │
+        └── riscv32KC2_system/              [SOC Root]
+            └── riscv32KC2_system.v         [System-on-Chip Top-Level]
+
+================================================================================
+MODULE HIERARCHY
+================================================================================
+
+riscv32KC2_system (Root)
+  ├── riscv_core (CPU)
+  │   ├── riscv_pipeline
+  │   ├── riscv_axi_ifetch (-> Bus Interface)
+  │   └── riscv_axi_data   (-> Bus Interface)
+  ├── riscv32KC2_bus (AXI4-Lite Interconnect)
+  │   ├── m0: IRAM Port (Internal)
+  │   ├── m1: DRAM Port (Internal)
+  │   ├── m2: mrom_axi_lite (Boot ROM)
+  │   ├── m3: axi2apb_bridge (-> Debug Module)
+  │   ├── m4: riscv32KC2_peripheral
+  │   │       ├── apb_uart
+  │   │       ├── apb_gpio
+  │   │       └── apb_ad_da_if
+  │   ├── m5: axi_riscv_clint (Timer)
+  │   └── m6: axi_riscv_plic (Int Controller)
+  └── riscv_debug_block (JTAG Access)
+
+================================================================================
+END OF FILE STRUCTURE
+================================================================================

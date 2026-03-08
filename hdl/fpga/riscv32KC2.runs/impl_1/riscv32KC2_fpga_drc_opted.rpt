@@ -1,0 +1,168 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Mar  8 23:29:46 2026
+| Host         : DESKTOP-9AH11CN running 64-bit major release  (build 9200)
+| Command      : report_drc -file riscv32KC2_fpga_drc_opted.rpt -pb riscv32KC2_fpga_drc_opted.pb -rpx riscv32KC2_fpga_drc_opted.rpx
+| Design       : riscv32KC2_fpga
+| Device       : xc7a200tsbg484-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max checks: <unlimited>
+             Checks found: 23
++-----------+----------+-----------------------------------------------------+--------+
+| Rule      | Severity | Description                                         | Checks |
++-----------+----------+-----------------------------------------------------+--------+
+| CFGBVS-1  | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1      |
+| CHECK-3   | Warning  | Report rule limit reached                           | 1      |
+| PLCK-12   | Warning  | Clock Placer Checks                                 | 1      |
+| REQP-1839 | Warning  | RAMB36 async control check                          | 20     |
++-----------+----------+-----------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+CFGBVS-1#1 Warning
+Missing CFGBVS and CONFIG_VOLTAGE Design Properties  
+Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+CHECK-3#1 Warning
+Report rule limit reached  
+REQP-1839 rule limit reached: 20 violations have been found.
+Related violations: <none>
+
+PLCK-12#1 Warning
+Clock Placer Checks  
+Poor placement for routing between an IO pin and BUFG. 
+Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
+ This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
+
+	jtag_tck_IBUF_inst (IBUF.O) is locked to AB21
+	jtag_tck_IBUF_BUFG_inst (BUFG.I) cannot be placed
+
+Related violations: <none>
+
+REQP-1839#1 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[10]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#2 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[12]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#3 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[14]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#4 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[16]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#5 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[17]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#6 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[19]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#7 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#8 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[20]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#9 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[21]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#10 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[24]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#11 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[25]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#12 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[26]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#13 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[27]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#14 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#15 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[31]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#16 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#17 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#18 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#19 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[8]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#20 Warning
+RAMB36 async control check  
+The RAMB36E1 u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 has an input control pin u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0/ADDRARDADDR[14] (net: u_system/u_riscv_core/u_dram_sram/D[11]) which is driven by a register (u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/ra_reg[9]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+

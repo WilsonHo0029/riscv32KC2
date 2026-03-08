@@ -1,0 +1,423 @@
+F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_mem.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_mem.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_mem
+
+Top level modules:
+	riscv_mem
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_core.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_core.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_core
+
+Top level modules:
+	riscv_core
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/ai_riscv32KC_bus.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/ai_riscv32KC_bus.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module ai_riscv32KC_bus
+
+Top level modules:
+	ai_riscv32KC_bus
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/debug_module/riscv_debug_module.v {1 {vlog -work work -vopt +incdir+../rtl/riscv_core -stats=none F:/Work/risv32KC2/hdl/rtl/debug_module/riscv_debug_module.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_debug_module
+
+Top level modules:
+	riscv_debug_module
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_fetch_pc_unit.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_fetch_pc_unit.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_fetch_pc_unit
+
+Top level modules:
+	riscv_fetch_pc_unit
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/read_req_to_axi.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/read_req_to_axi.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module read_req_to_axi
+
+Top level modules:
+	read_req_to_axi
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv32KC2_system/riscv32KC2_system.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv32KC2_system/riscv32KC2_system.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv32KC2_system
+
+Top level modules:
+	riscv32KC2_system
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/debug_module/dm_mem.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/debug_module/dm_mem.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module dm_mem
+
+Top level modules:
+	dm_mem
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/debug_module/riscv_debug_block.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/debug_module/riscv_debug_block.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_debug_block
+
+Top level modules:
+	riscv_debug_block
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/ram/mrom.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/ram/mrom.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module mrom
+
+Top level modules:
+	mrom
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/ad_da_if/apb_ad_da_if.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/ad_da_if/apb_ad_da_if.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module apb_ad_da_if
+
+Top level modules:
+	apb_ad_da_if
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_pipeline.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_pipeline.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_pipeline
+
+Top level modules:
+	riscv_pipeline
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/buf_cdc_rx.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/buf_cdc_rx.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module buf_cdc_rx
+
+Top level modules:
+	buf_cdc_rx
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/uart/apb_uart.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/uart/apb_uart.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module apb_uart
+-- Compiling module uart_tx
+-- Compiling module uart_rx
+
+Top level modules:
+	apb_uart
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/plic/riscv_plic.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/plic/riscv_plic.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_plic
+-- Compiling module plic_Gateways
+-- Compiling module plic_target
+-- Compiling module plic_target_binary_search
+
+Top level modules:
+	riscv_plic
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/riscv32KC2_bus.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/riscv32KC2_bus.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv32KC2_bus
+
+Top level modules:
+	riscv32KC2_bus
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/axi_fifo.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/axi_fifo.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi_fifo
+
+Top level modules:
+	axi_fifo
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_decode.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_decode.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_decode
+
+Top level modules:
+	riscv_decode
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_axi_ifetch.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_axi_ifetch.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_axi_ifetch
+
+Top level modules:
+	riscv_axi_ifetch
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/ad_da_if/da_converters.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/ad_da_if/da_converters.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module da_converters
+
+Top level modules:
+	da_converters
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/ai_riscv32KC_peripheral.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/ai_riscv32KC_peripheral.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module ai_riscv32KC_peripheral
+
+Top level modules:
+	ai_riscv32KC_peripheral
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/apb_decoder.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/apb_decoder.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module apb_decoder
+
+Top level modules:
+	apb_decoder
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/ad_da_if/adc.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/ad_da_if/adc.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module adc
+
+Top level modules:
+	adc
+
+} {} {}} F:/Work/risv32KC2/hdl/testbench/tb_ai_riscv32KC_system.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/testbench/tb_ai_riscv32KC_system.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module tb_ai_riscv32KC_system
+
+Top level modules:
+	tb_ai_riscv32KC_system
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/axi_lite_demux.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/axi_lite_demux.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi_lite_demux
+
+Top level modules:
+	axi_lite_demux
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/debug_module/debug_rom_013.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/debug_module/debug_rom_013.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module debug_rom_013
+
+Top level modules:
+	debug_rom_013
+
+} {} {}} F:/Work/risv32KC2/hdl/testbench/tb_riscv32KC2_system.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/testbench/tb_riscv32KC2_system.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module tb_riscv32KC2_system
+
+Top level modules:
+	tb_riscv32KC2_system
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_wb.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_wb.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_wb
+
+Top level modules:
+	riscv_wb
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/clint/riscv_clint.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/clint/riscv_clint.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_clint
+
+Top level modules:
+	riscv_clint
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/gpio/apb_gpio.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/gpio/apb_gpio.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module apb_gpio
+
+Top level modules:
+	apb_gpio
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/ram_model.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/ram_model.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module ram_model
+
+Top level modules:
+	ram_model
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_exu.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_exu.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_exu
+
+Top level modules:
+	riscv_exu
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/booth_mult_r4_b.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/booth_mult_r4_b.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module booth_mult_r4_b
+-- Compiling module booth_pp_base_r4
+
+Top level modules:
+	booth_mult_r4_b
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_axi_data.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_axi_data.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_axi_data
+
+Top level modules:
+	riscv_axi_data
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_defines.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_defines.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/axi_lite_mux2.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/axi_lite_mux2.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi_lite_mux2
+
+Top level modules:
+	axi_lite_mux2
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_final_stage.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_final_stage.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_final_stage
+
+Top level modules:
+	riscv_final_stage
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_decoder.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_decoder.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_decoder
+
+Top level modules:
+	riscv_decoder
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_pipeline_regs.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_pipeline_regs.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_pipeline_regs
+
+Top level modules:
+	riscv_pipeline_regs
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_csr.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_csr.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_csr
+
+Top level modules:
+	riscv_csr
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_iram_arbit.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_iram_arbit.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_iram_arbit
+
+Top level modules:
+	riscv_iram_arbit
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_alu.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_alu.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_alu
+
+Top level modules:
+	riscv_alu
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/plic/axi_riscv_plic.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/plic/axi_riscv_plic.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi_riscv_plic
+
+Top level modules:
+	axi_riscv_plic
+
+} {} {}} F:/Work/risv32KC2/hdl/testbench/uart_rxd_model.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/testbench/uart_rxd_model.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module uart_rxd_model
+
+Top level modules:
+	uart_rxd_model
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_multdiv.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_multdiv.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_multdiv
+
+Top level modules:
+	riscv_multdiv
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/riscv32KC2_peripheral.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/riscv32KC2_peripheral.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv32KC2_peripheral
+
+Top level modules:
+	riscv32KC2_peripheral
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/div_r4.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/div_r4.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module div_r4
+
+Top level modules:
+	div_r4
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/debug_module/riscv_jtag_dtm.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/debug_module/riscv_jtag_dtm.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_jtag_dtm
+
+Top level modules:
+	riscv_jtag_dtm
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/axi2apb_bridge.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/axi2apb_bridge.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi2apb_bridge
+
+Top level modules:
+	axi2apb_bridge
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/booth_mult_r4.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/booth_mult_r4.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module booth_mult_r4
+
+Top level modules:
+	booth_mult_r4
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/ai_riscv32KC_system/ai_riscv32KC_system.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/ai_riscv32KC_system/ai_riscv32KC_system.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module ai_riscv32KC_system
+
+Top level modules:
+	ai_riscv32KC_system
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/write_req_to_axi.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/write_req_to_axi.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module write_req_to_axi
+
+Top level modules:
+	write_req_to_axi
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/sync_fifo.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/sync_fifo.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module sync_fifo
+
+Top level modules:
+	sync_fifo
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/bus/axi_slv_to_dev_inf.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/bus/axi_slv_to_dev_inf.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi_slv_to_dev_inf
+
+Top level modules:
+	axi_slv_to_dev_inf
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/misc/buf_cdc_tx.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/misc/buf_cdc_tx.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module buf_cdc_tx
+
+Top level modules:
+	buf_cdc_tx
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_if_stage.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_if_stage.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_if_stage
+
+Top level modules:
+	riscv_if_stage
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/ram/mrom_axi_lite.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/ram/mrom_axi_lite.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module mrom_axi_lite
+
+Top level modules:
+	mrom_axi_lite
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/peripheral/gpio/gpio.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/peripheral/gpio/gpio.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module gpio
+
+Top level modules:
+	gpio
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_regfile.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/riscv_core/riscv_regfile.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module riscv_regfile
+
+Top level modules:
+	riscv_regfile
+
+} {} {}} F:/Work/risv32KC2/hdl/rtl/clint/axi_riscv_clint.v {1 {vlog -work work -vopt -stats=none F:/Work/risv32KC2/hdl/rtl/clint/axi_riscv_clint.v
+QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+-- Compiling module axi_riscv_clint
+
+Top level modules:
+	axi_riscv_clint
+
+} {} {}}

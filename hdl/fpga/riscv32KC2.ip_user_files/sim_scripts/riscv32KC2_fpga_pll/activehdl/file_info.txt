@@ -1,0 +1,5 @@
+xpm_cdc.sv,systemverilog,xpm,E:/Xilinx/2025.2/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../ipstatic"incdir="E:/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1"
+xpm_VCOMP.vhd,vhdl,xpm,E:/Xilinx/2025.2/Vivado/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../ipstatic"incdir="E:/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1"
+riscv32KC2_fpga_pll_clk_wiz.v,verilog,xil_defaultlib,../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1/riscv32KC2_fpga_pll_clk_wiz.v,incdir="../../../ipstatic"incdir="E:/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1"
+riscv32KC2_fpga_pll.v,verilog,xil_defaultlib,../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1/riscv32KC2_fpga_pll.v,incdir="../../../ipstatic"incdir="E:/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1"
+glbl.v,Verilog,xil_defaultlib,glbl.v

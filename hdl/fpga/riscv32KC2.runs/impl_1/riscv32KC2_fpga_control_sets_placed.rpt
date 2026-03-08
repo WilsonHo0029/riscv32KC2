@@ -1,0 +1,210 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Mar  8 23:30:39 2026
+| Host         : DESKTOP-9AH11CN running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file riscv32KC2_fpga_control_sets_placed.rpt
+| Design       : riscv32KC2_fpga
+| Device       : xc7a200t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   132 |
+|    Minimum number of control sets                        |   132 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   165 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   132 |
+| >= 0 to < 4        |     4 |
+| >= 4 to < 6        |    13 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     5 |
+| >= 14 to < 16      |     0 |
+| >= 16              |   105 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             340 |           93 |
+| No           | No                    | Yes                    |             337 |          163 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |             104 |           27 |
+| Yes          | No                    | Yes                    |            3405 |         1387 |
+| Yes          | Yes                   | No                     |              81 |           34 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|     Clock Signal     |                                              Enable Signal                                              |                                    Set/Reset Signal                                   | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------------------+----------------+--------------+
+| ~jtag_tck_IBUF_BUFG  |                                                                                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                1 |              1 |         1.00 |
+|  u_pll/inst/clk_out1 |                                                                                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                1 |              2 |         2.00 |
+|  u_pll/inst/clk_out1 |                                                                                                         | u_system/r_sys_rstn[1]_i_1_n_0                                                        |                1 |              2 |         2.00 |
+|  u_pll/inst/clk_out1 |                                                                                                         | u_system/u_debug_block/u_debug_module/ndmreset_reg_0                                  |                1 |              2 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_divider/FSM_onehot_state[3]_i_1_n_0    | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                1 |              4 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/do_pop                                                                   | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                1 |              4 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_tx/do_pop                                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                1 |              4 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_rx/bit_cnt0                                                              | u_system/u_peripheral/u_uart/u_rx/bit_cnt[0]                                          |                1 |              4 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_tx/bit_cnt[3]_i_1__0_n_0                                                 | u_system/u_peripheral/u_uart/u_tx/Q[0]                                                |                1 |              4 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_divider/sign_q_0                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                4 |              4 |         1.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[4]_0[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                2 |              4 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_rx/E[0]                                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                1 |              4 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_data/u_write_axi/FSM_onehot_state_reg[3]_1[0]                                   | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                2 |              5 |         2.50 |
+|  u_pll/inst/clk_out1 | u_system/u_bus/u_s1/u_fifo_b/empty_i_1__0_n_0                                                           | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                2 |              5 |         2.50 |
+| ~jtag_tck_IBUF_BUFG  | u_system/u_debug_block/u_jtag_dtm/ir[4]_i_1_n_0                                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                1 |              5 |         5.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_data/u_instr_axi/empty_reg_1[0]                                                 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                2 |              5 |         2.50 |
+|  u_pll/inst/clk_out1 | u_system/u_boot_rom/read_state                                                                          | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                2 |              5 |         2.50 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_csr/r_stepie0                                          | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                4 |              7 |         1.75 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_rx/sbf_buf0                                                              |                                                                                       |                1 |              8 |         8.00 |
+|  u_pll/inst/clk_out2 |                                                                                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                2 |              8 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_tx/sbf_buf[7]_i_1_n_0                                                    |                                                                                       |                2 |              8 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[37]_1[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |                4 |              9 |         2.25 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[4]_0[0]                                                  |                                                                                       |                2 |             12 |         6.00 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_axi2apb/m_apb_paddr[11]_i_1_n_0                                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                4 |             12 |         3.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_uart/u_rx/E[0]                                                                  |                                                                                       |                2 |             12 |         6.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/ren                                                  |                                                                                       |                4 |             12 |         3.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[9]_0                                      |                                                                                       |                7 |             12 |         1.71 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[4]_2[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                6 |             16 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_data/u_instr_axi/r_araddr_reg[25]_0[0]                                          | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                7 |             16 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/dm_active_reg[0]                                    | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |                7 |             21 |         3.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_data/u_instr_axi/r_araddr_reg[25]_1[0]                                          | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                8 |             24 |         3.00 |
+|  u_pll/inst/clk_out1 |                                                                                                         | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               12 |             25 |         2.08 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/__0/i__n_0                                                               | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             26 |         2.17 |
+|  jtag_tck_IBUF_BUFG  |                                                                                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                7 |             30 |         4.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[22]_1[0]                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             30 |         1.88 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_ifetch/u_instr_axi/E[0]                                                         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               10 |             30 |         3.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___700__0_n_0                                           | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               18 |             31 |         1.72 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[22]_0[0]                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             31 |         2.38 |
+|  jtag_tck_IBUF_BUFG  | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_rx/i_rdy_set                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                9 |             32 |         3.56 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[34]_0[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               15 |             32 |         2.13 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[34]_4[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               18 |             32 |         1.78 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[36]_1[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               17 |             32 |         1.88 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[2]_0[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[34]_5[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_axi2apb/s_axi_rdata0                                                                   | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                6 |             32 |         5.33 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_axi2apb/E[0]                                                                           | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               23 |             32 |         1.39 |
+|  u_pll/inst/clk_out1 | u_system/u_clint/u_axi_slv_to_dev_inf/E[1]                                                              | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                9 |             32 |         3.56 |
+|  u_pll/inst/clk_out1 | u_system/u_clint/u_axi_slv_to_dev_inf/E[0]                                                              | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_clint/u_axi_slv_to_dev_inf/addr_reg_reg[2]_0[1]                                              | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                7 |             32 |         4.57 |
+|  u_pll/inst/clk_out1 | u_system/u_clint/u_axi_slv_to_dev_inf/addr_reg_reg[2]_0[0]                                              | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_axi2apb/axi_debug_wready                                                               | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                7 |             32 |         4.57 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_stage/u_fetch_pc/fetch_addr[31]_i_1_n_0                           | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_multiplier/iram_from_ifetch_rvalid_reg | u_system/u_riscv_core/u_pipeline/u_if_stage/u_fetch_pc/clear_prefetch                 |               18 |             32 |         1.78 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_multiplier/r_data_reg[64]_4[0]         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                8 |             32 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_multiplier/r_data_reg[64]_6[0]         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[36]_0[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               18 |             32 |         1.78 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_multiplier/s_fetch_2op_reg_2[0]        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                9 |             32 |         3.56 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_ifetch/u_instr_axi/r_data_hold0                                                 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[64]_1[0]                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_axi2apb/m_apb_psel_reg_1[0]                                                            | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |                6 |             32 |         5.33 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_csr/mcycleh[31]_i_1_n_0                          | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_csr/mepc[31]_i_1_n_0                             | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_csr/minstreth[31]_i_1_n_0                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                9 |             32 |         3.56 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[3]_0[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[3]_1[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               15 |             32 |         2.13 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[3]_2[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               17 |             32 |         1.88 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[3]_3[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[4]_1[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[5]_1[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               10 |             32 |         3.20 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[5]_3[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               18 |             32 |         1.78 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/E[0]                                                                     | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |                7 |             32 |         4.57 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___0_n_0                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___3_n_0                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___2_n_0                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___4_n_0                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               10 |             32 |         3.20 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___1_n_0                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               17 |             32 |         1.88 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i___5_n_0                                                | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/i__n_0                                                   | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_csr/dscratch10                                         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               17 |             32 |         1.88 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[5]_2                                                     | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_csr/dscratch00                                         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               17 |             32 |         1.88 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_stage/u_fetch_pc/FSM_sequential_state_reg[1][0]                   |                                                                                       |                8 |             32 |         4.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_4[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_5[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_12[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_2[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_23[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_6[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_0[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_10[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_21[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_13[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_7[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               15 |             32 |         2.13 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_19[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_22[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_8[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_1[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_3[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_15[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               11 |             32 |         2.91 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/p_0_in                                                                   | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_9[0]                                        | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_18[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_11[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               15 |             32 |         2.13 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_20[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               21 |             32 |         1.52 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_16[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_14[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[2]_1[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_peripheral/u_bridge/m_apb_paddr_reg[2]_2[0]                                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/FSM_sequential_state_reg[1][0]                       |                                                                                       |                5 |             32 |         6.40 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[20]_1[0]                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               15 |             32 |         2.13 |
+|  u_pll/inst/clk_out1 | u_system/u_plic/u_axi_slv_to_dev_inf/addr_reg_reg[3]_0[0]                                               | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               15 |             32 |         2.13 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[21]_1[0]                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             32 |         2.00 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/r_data_reg[24]_0[0]                                  | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               19 |             32 |         1.68 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_regs/r_data_reg[4]_17[0]                                       | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               13 |             32 |         2.46 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_resp_cdc/E[0]                                               | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               19 |             32 |         1.68 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_resp_cdc/vld03_out                                          | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               10 |             32 |         3.20 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/E[0]                                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[34]_3[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               10 |             32 |         3.20 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[35]_0[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               12 |             32 |         2.67 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[36]_2[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               14 |             32 |         2.29 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[35]_1[0]                                | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               10 |             32 |         3.20 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/buf_dat_reg[0]_0[0]                                 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               19 |             32 |         1.68 |
+|  jtag_tck_IBUF_BUFG  | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/vld03_out                                         | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |               13 |             41 |         3.15 |
+|  jtag_tck_IBUF_BUFG  | u_system/u_debug_block/u_jtag_dtm/dmi_reg_0[0]                                                          | u_system/u_debug_block/u_jtag_dtm/u_jtag2debug_cdc_tx/fpga_rst_n                      |                7 |             41 |         5.86 |
+|  jtag_tck_IBUF_BUFG  | u_system/u_debug_block/u_jtag_dtm/shift_reg[0]                                                          | u_system/u_debug_block/u_jtag_dtm/shift_reg0                                          |               14 |             41 |         2.93 |
+|  u_pll/inst/clk_out1 | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/i_rdy_set                                           | u_system/u_debug_block/u_debug_module/u_dmi_req_cdc/r_sys_rstn_reg[1]                 |               14 |             41 |         2.93 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_if_id_ctrl_regs/E[0]                                                 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               25 |             64 |         2.56 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_divider/Q[0]                           | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               16 |             66 |         4.12 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_divider/count[4]_i_1_n_0               | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               38 |            101 |         2.66 |
+|  u_pll/inst/clk_out1 | u_system/u_riscv_core/u_pipeline/u_final_stage/u_exu/u_multdiv/u_multiplier/r_data_reg[64]_5[0]         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |               66 |            157 |         2.38 |
+|  u_pll/inst/clk_out1 |                                                                                                         | u_system/u_riscv_core/u_pipeline/u_final_stage/u_wb/u_regfile/r_sys_debug_rstn_reg[1] |              138 |            267 |         1.93 |
+|  u_pll/inst/clk_out1 |                                                                                                         |                                                                                       |               93 |            340 |         3.66 |
++----------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

@@ -1,0 +1,40 @@
+﻿{
+  "build": {
+    "f_cpu": "40000000L",
+    "hwids": [
+      [
+        "0x002b",
+        "0x15bb"
+      ]
+    ],
+    "mabi": "ilp32",
+    "march": "rv32imac",
+    "mcmodel": "medany",   
+    "download": "iram",
+    "download_modes": [
+      "iram"
+    ]
+  },
+  "debug": {
+    "onboard_tools": [
+      "ftdi"
+    ]
+  },
+  "frameworks": ["riscv32KC2-sdk"],
+  "name": "AI RISC-V KC32 System",
+  "upload": {
+    "maximum_ram_size": 536870912,
+    "maximum_size": 536870912,
+    "protocol": "ftdi",
+    "protocols": [
+      "ftdi",
+      "jlink"
+    ],
+    "openocd_redirect": "true",
+    "openocd_redirect_cfg": "openocd.cfg"
+  },
+  "url": "",
+  "vendor": "AI RISC-V"
+}
+
+

@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Mar  8 23:29:02 2026
+# Process ID         : 35096
+# Current directory  : F:/Work/risv32KC2/hdl/fpga/riscv32KC2.runs/impl_1
+# Command line       : vivado.exe -log riscv32KC2_fpga.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source riscv32KC2_fpga.tcl -notrace
+# Log file           : F:/Work/risv32KC2/hdl/fpga/riscv32KC2.runs/impl_1/riscv32KC2_fpga.vdi
+# Journal file       : F:/Work/risv32KC2/hdl/fpga/riscv32KC2.runs/impl_1\vivado.jou
+# Running On         : DESKTOP-9AH11CN
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 22631
+# Processor Detail   : AMD Ryzen 7 3700X 8-Core Processor             
+# CPU Frequency      : 3600 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 34281 MB
+# Swap memory        : 7873 MB
+# Total Virtual      : 42154 MB
+# Available Virtual  : 7871 MB
+#-----------------------------------------------------------
+source riscv32KC2_fpga.tcl -notrace

@@ -1,0 +1,521 @@
+Debug: 15 30 log.c:236 handle_log_output_command(): set log_output to "openocd.log"
+Debug: 16 30 command.c:152 script_debug(): command - riscv.cpu configure -work-area-phys 0x80000000 -work-area-size 10000 -work-area-backup 1
+Debug: 17 30 target.c:2201 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 18 30 target.c:2201 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 19 30 target.c:2201 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 20 30 command.c:152 script_debug(): command - init
+Debug: 21 30 command.c:152 script_debug(): command - target init
+Debug: 22 30 command.c:152 script_debug(): command - target names
+Debug: 23 30 command.c:152 script_debug(): command - riscv.cpu cget -event gdb-flash-erase-start
+Debug: 24 30 command.c:152 script_debug(): command - riscv.cpu configure -event gdb-flash-erase-start reset init
+Debug: 25 30 command.c:152 script_debug(): command - riscv.cpu cget -event gdb-flash-write-end
+Debug: 26 30 command.c:152 script_debug(): command - riscv.cpu configure -event gdb-flash-write-end reset halt
+Debug: 27 30 command.c:152 script_debug(): command - riscv.cpu cget -event gdb-attach
+Debug: 28 30 command.c:152 script_debug(): command - riscv.cpu configure -event gdb-attach halt 1000
+Debug: 29 30 target.c:1659 handle_target_init_command(): Initializing targets...
+Debug: 30 30 riscv.c:440 riscv_init_target(): [riscv.cpu] riscv_init_target()
+Debug: 31 30 semihosting_common.c:109 semihosting_common_init():  
+Debug: 32 31 ftdi.c:731 ftdi_initialize(): ftdi interface using shortest path jtag state transitions
+Debug: 33 48 mpsse.c:406 mpsse_purge(): -
+Debug: 34 48 mpsse.c:687 mpsse_loopback_config(): off
+Debug: 35 48 mpsse.c:732 mpsse_set_frequency(): target 1000000 Hz
+Debug: 36 48 mpsse.c:724 mpsse_rtck_config(): off
+Debug: 37 48 mpsse.c:713 mpsse_divide_by_5_config(): off
+Debug: 38 48 mpsse.c:693 mpsse_set_divisor(): 29
+Debug: 39 48 mpsse.c:756 mpsse_set_frequency(): actually 1000000 Hz
+Debug: 40 48 adapter.c:213 adapter_khz_to_speed(): convert khz to adapter specific speed value
+Debug: 41 49 adapter.c:217 adapter_khz_to_speed(): have adapter set up
+Debug: 42 49 mpsse.c:732 mpsse_set_frequency(): target 1000000 Hz
+Debug: 43 49 mpsse.c:724 mpsse_rtck_config(): off
+Debug: 44 49 mpsse.c:713 mpsse_divide_by_5_config(): off
+Debug: 45 49 mpsse.c:693 mpsse_set_divisor(): 29
+Debug: 46 49 mpsse.c:756 mpsse_set_frequency(): actually 1000000 Hz
+Debug: 47 49 adapter.c:213 adapter_khz_to_speed(): convert khz to adapter specific speed value
+Debug: 48 49 adapter.c:217 adapter_khz_to_speed(): have adapter set up
+Info : 49 49 adapter.c:177 adapter_init(): clock speed 1000 kHz
+Debug: 50 49 openocd.c:134 handle_init_command(): Debug Adapter init complete
+Debug: 51 49 command.c:152 script_debug(): command - transport init
+Debug: 52 49 transport.c:219 handle_transport_init(): handle_transport_init
+Debug: 53 49 core.c:830 jtag_add_reset(): SRST line released
+Debug: 54 49 core.c:855 jtag_add_reset(): TRST line released
+Debug: 55 49 core.c:328 jtag_call_event_callbacks(): jtag event: TAP reset
+Debug: 56 49 command.c:152 script_debug(): command - jtag arp_init
+Debug: 57 49 core.c:1509 jtag_init_inner(): Init JTAG chain
+Debug: 58 49 core.c:328 jtag_call_event_callbacks(): jtag event: TAP reset
+Debug: 59 49 core.c:1234 jtag_examine_chain(): DR scan interrogation for IDCODE/BYPASS
+Debug: 60 49 core.c:328 jtag_call_event_callbacks(): jtag event: TAP reset
+Info : 61 50 core.c:1133 jtag_examine_chain_display(): JTAG tap: riscv.cpu tap/device found: 0x10001c3f (mfg: 0x61f (Ventana Micro Systems), part: 0x0001, ver: 0x1)
+Debug: 62 50 core.c:1364 jtag_validate_ircapture(): IR capture validation scan
+Debug: 63 50 core.c:1421 jtag_validate_ircapture(): riscv.cpu: IR capture 0x01
+Debug: 64 50 command.c:152 script_debug(): command - dap init
+Debug: 65 50 arm_dap.c:97 dap_init_all(): Initializing all DAPs ...
+Debug: 66 50 openocd.c:151 handle_init_command(): Examining targets...
+Debug: 67 50 target.c:1845 target_call_event_callbacks(): target event 19 (examine-start) for core riscv.cpu
+Debug: 68 50 riscv.c:1539 riscv_examine(): [riscv.cpu] Starting examination
+Debug: 69 50 riscv.c:400 dtmcontrol_scan(): DTMCONTROL: 0x0 -> 0xa071
+Debug: 70 50 riscv.c:1549 riscv_examine(): [riscv.cpu] dtmcontrol=0xa071
+Debug: 71 50 riscv.c:1551 riscv_examine(): [riscv.cpu] version=0x1
+Debug: 72 50 riscv-013.c:2742 init_target(): [riscv.cpu] Init.
+Debug: 73 50 riscv-013.c:1879 examine(): [riscv.cpu] dbgbase=0x0
+Debug: 74 50 riscv-013.c:469 dtmcontrol_scan(): DTMCS: 0x0 -> 0xa071
+Debug: 75 50 riscv-013.c:1882 examine(): [riscv.cpu] dtmcontrol=0xa071
+Debug: 76 50 riscv-013.c:1883 examine(): [riscv.cpu]   dmireset=0
+Debug: 77 50 riscv-013.c:1884 examine(): [riscv.cpu]   idle=2
+Debug: 78 50 riscv-013.c:1885 examine(): [riscv.cpu]   dmistat=0
+Debug: 79 50 riscv-013.c:1886 examine(): [riscv.cpu]   abits=7
+Debug: 80 50 riscv-013.c:1887 examine(): [riscv.cpu]   version=1
+Debug: 81 50 riscv-013.c:770 check_dbgbase_exists(): [riscv.cpu] Searching for DM with DMI base address (dbgbase) = 0x0
+Debug: 82 50 riscv-013.c:255 get_dm(): [riscv.cpu] Coreid [0] Allocating new DM
+Debug: 83 50 riscv-013.c:509 dmi_scan(): [riscv.cpu] reset_delays_wait done
+Debug: 84 50 riscv-013.c:415 scan(): 41b w 00000000 @10 -> + 90008028 @04; 0i
+Debug: 85 50 riscv-013.c:415 scan(): 41b - 00000000 @10 -> b 00000000 @00; 0i
+Debug: 86 50 riscv-013.c:478 increase_dmi_busy_delay(): [riscv.cpu] dtmcs_idle=2, dmi_busy_delay=1, ac_busy_delay=0
+Debug: 87 51 riscv-013.c:469 dtmcontrol_scan(): DTMCS: 0x10000 -> 0xa871
+Debug: 88 51 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000001 @10; 1i
+Debug: 89 51 riscv-013.c:425 scan():  ->  dmactive
+Debug: 90 51 riscv-013.c:415 scan(): 41b w 00000001 @10 -> + 00000000 @10; 1i
+Debug: 91 51 riscv-013.c:425 scan():  dmactive -> 
+Debug: 92 51 riscv-013.c:415 scan(): 41b - 00000000 @10 -> b 00000000 @00; 1i
+Debug: 93 51 riscv-013.c:478 increase_dmi_busy_delay(): [riscv.cpu] dtmcs_idle=2, dmi_busy_delay=2, ac_busy_delay=0
+Debug: 94 51 riscv-013.c:469 dtmcontrol_scan(): DTMCS: 0x10000 -> 0xa871
+Debug: 95 51 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000000 @10; 2i
+Debug: 96 51 riscv-013.c:5014 riscv013_invalidate_cached_debug_buffer(): [riscv.cpu] Invalidating progbuf cache
+Debug: 97 51 riscv-013.c:415 scan(): 41b w 07ffffc1 @10 -> + 00000001 @10; 2i
+Debug: 98 51 riscv-013.c:425 scan():  hasel hartselhi=1023 hartsello=1023 dmactive ->  dmactive
+Debug: 99 52 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000001 @10; 2i
+Debug: 100 52 riscv-013.c:425 scan():  ->  dmactive
+Debug: 101 52 riscv-013.c:415 scan(): 41b r 00000000 @10 -> + 03ffffc1 @10; 2i
+Debug: 102 52 riscv-013.c:425 scan():  ->  hartselhi=1023 hartsello=1023 dmactive
+Debug: 103 52 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 03ffffc1 @10; 2i
+Debug: 104 52 riscv-013.c:425 scan():  ->  hartselhi=1023 hartsello=1023 dmactive
+Debug: 105 52 riscv-013.c:415 scan(): 41b w 00000001 @10 -> + 03ffffc1 @10; 2i
+Debug: 106 52 riscv-013.c:425 scan():  dmactive ->  hartselhi=1023 hartsello=1023 dmactive
+Debug: 107 52 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 03ffffc1 @10; 2i
+Debug: 108 52 riscv-013.c:425 scan():  ->  hartselhi=1023 hartsello=1023 dmactive
+Debug: 109 53 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00000001 @10; 2i
+Debug: 110 53 riscv-013.c:425 scan():  ->  dmactive
+Debug: 111 53 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 112 53 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 113 53 riscv-013.c:1945 examine(): [riscv.cpu] dmstatus:  0x00030382
+Debug: 114 53 riscv-013.c:1961 examine(): [riscv.cpu] hartsellen=20
+Debug: 115 53 riscv-013.c:415 scan(): 41b r 00000000 @12 -> + 00030382 @11; 2i
+Debug: 116 53 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 117 53 riscv-013.c:415 scan(): 41b - 00000000 @12 -> + 00000004 @12; 2i
+Debug: 118 53 riscv-013.c:415 scan(): 41b r 00000000 @38 -> + 00000004 @12; 2i
+Debug: 119 54 riscv-013.c:415 scan(): 41b - 00000000 @38 -> + 00000000 @38; 2i
+Debug: 120 54 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00000000 @38; 2i
+Debug: 121 54 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 122 54 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Info : 123 54 riscv-013.c:1988 examine(): [riscv.cpu] datacount=1 progbufsize=4
+Debug: 124 54 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 04000001 @16; 2i
+Debug: 125 54 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 126 54 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 127 54 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 128 54 riscv-013.c:415 scan(): 41b w 00010001 @10 -> + 00030382 @11; 2i
+Debug: 129 54 riscv-013.c:425 scan():  hartsello=1 dmactive ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 130 54 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000001 @10; 2i
+Debug: 131 54 riscv-013.c:425 scan():  ->  dmactive
+Debug: 132 54 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00010001 @10; 2i
+Debug: 133 54 riscv-013.c:425 scan():  ->  hartsello=1 dmactive
+Debug: 134 55 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 0003c382 @11; 2i
+Debug: 135 55 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allnonexistent anynonexistent allhalted anyhalted authenticated version=2
+Debug: 136 55 riscv-013.c:2026 examine(): [riscv.cpu] Detected 1 harts.
+Debug: 137 55 riscv-013.c:415 scan(): 41b w 00000001 @10 -> + 0003c382 @11; 2i
+Debug: 138 55 riscv-013.c:425 scan():  dmactive ->  allresumeack anyresumeack allnonexistent anynonexistent allhalted anyhalted authenticated version=2
+Debug: 139 55 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00010001 @10; 2i
+Debug: 140 55 riscv-013.c:425 scan():  ->  hartsello=1 dmactive
+Debug: 141 55 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00000001 @10; 2i
+Debug: 142 55 riscv-013.c:425 scan():  ->  dmactive
+Debug: 143 55 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 144 55 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 145 55 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x321008; access register, size=64, postexec=0, transfer=1, write=0, regno=0x1008
+Debug: 146 55 riscv-013.c:415 scan(): 41b w 00321008 @17 -> + 00030382 @11; 2i
+Debug: 147 55 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 148 55 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00000000 @17; 2i
+Debug: 149 56 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000201 @16; 2i
+Debug: 150 56 riscv-013.c:425 scan():  ->  progbufsize=4 cmderr=2 datacount=1
+Debug: 151 56 riscv-013.c:909 execute_abstract_command(): [riscv.cpu] command 0x321008 failed; abstractcs=0x4000201
+Debug: 152 56 riscv-013.c:415 scan(): 41b w 00000700 @16 -> + 04000201 @16; 2i
+Debug: 153 56 riscv-013.c:425 scan():  cmderr=7 ->  progbufsize=4 cmderr=2 datacount=1
+Debug: 154 56 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000201 @16; 2i
+Debug: 155 56 riscv-013.c:425 scan():  ->  progbufsize=4 cmderr=2 datacount=1
+Debug: 156 56 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x221008; access register, size=32, postexec=0, transfer=1, write=0, regno=0x1008
+Debug: 157 56 riscv-013.c:415 scan(): 41b w 00221008 @17 -> + 04000001 @16; 2i
+Debug: 158 56 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 159 56 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00321008 @17; 2i
+Debug: 160 56 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 161 56 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 162 56 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 163 56 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 164 56 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 165 56 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x221009; access register, size=32, postexec=0, transfer=1, write=0, regno=0x1009
+Debug: 166 57 riscv-013.c:415 scan(): 41b w 00221009 @17 -> + 90008028 @04; 2i
+Debug: 167 57 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00221008 @17; 2i
+Debug: 168 57 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 169 57 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 170 57 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 171 57 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 172 57 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 00000000 @04; 2i
+Debug: 173 57 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading misa
+Debug: 174 57 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220301; access register, size=32, postexec=0, transfer=1, write=0, regno=0x301
+Debug: 175 57 riscv-013.c:415 scan(): 41b w 00220301 @17 -> + 00000000 @04; 2i
+Debug: 176 58 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00221009 @17; 2i
+Debug: 177 58 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 178 58 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 179 58 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 180 58 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 181 58 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 182 58 riscv-013.c:1722 register_read_direct(): [riscv.cpu] misa = 0x90008028
+Debug: 183 58 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading csr3106
+Debug: 184 58 riscv-013.c:1207 prep_for_register_access(): [riscv.cpu] Preparing mstatus to access csr3106
+Debug: 185 58 riscv.c:4924 riscv_get_register(): [riscv.cpu] No cache, reading mstatus from target
+Debug: 186 58 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register mstatus
+Debug: 187 58 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading mstatus
+Debug: 188 58 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220300; access register, size=32, postexec=0, transfer=1, write=0, regno=0x300
+Debug: 189 58 riscv-013.c:415 scan(): 41b w 00220300 @17 -> + 90008028 @04; 2i
+Debug: 190 58 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220301 @17; 2i
+Debug: 191 59 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 192 59 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 193 59 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 194 59 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 195 59 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 196 59 riscv-013.c:1722 register_read_direct(): [riscv.cpu] mstatus = 0x90008028
+Debug: 197 59 riscv.c:4839 riscv_set_or_write_register(): [riscv.cpu] No cache, writing to target: mstatus <- 0x90008228
+Debug: 198 59 riscv-013.c:4725 riscv013_set_register(): [riscv.cpu] writing 0x90008228 to register mstatus
+Debug: 199 59 riscv-013.c:1674 register_write_direct(): [riscv.cpu] Writing 0x90008228 to mstatus
+Debug: 200 59 riscv-013.c:415 scan(): 41b w 90008228 @04 -> + 90008028 @04; 2i
+Debug: 201 59 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 202 59 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x230300; access register, size=32, postexec=0, transfer=1, write=1, regno=0x300
+Debug: 203 59 riscv-013.c:415 scan(): 41b w 00230300 @17 -> + 90008228 @04; 2i
+Debug: 204 59 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220300 @17; 2i
+Debug: 205 59 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 206 59 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 207 59 riscv-013.c:1693 register_write_direct(): [riscv.cpu] mstatus <- 0x90008228
+Debug: 208 59 riscv-013.c:1227 prep_for_register_access(): [riscv.cpu] Prepared to access csr3106 (mstatus=0x90008228)
+Debug: 209 59 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220c22; access register, size=32, postexec=0, transfer=1, write=0, regno=0xc22
+Debug: 210 60 riscv-013.c:415 scan(): 41b w 00220c22 @17 -> + 04000001 @16; 2i
+Debug: 211 60 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 212 60 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00230300 @17; 2i
+Debug: 213 60 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 214 60 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 215 60 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 216 60 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 217 60 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008228 @04; 2i
+Debug: 218 60 riscv-013.c:1239 cleanup_after_register_access(): [riscv.cpu] Restoring mstatus to 0x90008028
+Debug: 219 60 riscv.c:4839 riscv_set_or_write_register(): [riscv.cpu] No cache, writing to target: mstatus <- 0x90008028
+Debug: 220 60 riscv-013.c:4725 riscv013_set_register(): [riscv.cpu] writing 0x90008028 to register mstatus
+Debug: 221 61 riscv-013.c:1674 register_write_direct(): [riscv.cpu] Writing 0x90008028 to mstatus
+Debug: 222 61 riscv-013.c:415 scan(): 41b w 90008028 @04 -> + 90008228 @04; 2i
+Debug: 223 61 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008228 @04; 2i
+Debug: 224 61 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x230300; access register, size=32, postexec=0, transfer=1, write=1, regno=0x300
+Debug: 225 61 riscv-013.c:415 scan(): 41b w 00230300 @17 -> + 90008028 @04; 2i
+Debug: 226 61 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220c22 @17; 2i
+Debug: 227 61 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 228 61 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 229 61 riscv-013.c:1693 register_write_direct(): [riscv.cpu] mstatus <- 0x90008028
+Debug: 230 61 riscv-013.c:1722 register_read_direct(): [riscv.cpu] csr3106 = 0x90008228
+Info : 231 61 riscv-013.c:2090 examine(): [riscv.cpu] Vector support with vlenb=-1879014872
+Debug: 232 61 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading csr4016
+Debug: 233 61 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220fb0; access register, size=32, postexec=0, transfer=1, write=0, regno=0xfb0
+Debug: 234 62 riscv-013.c:415 scan(): 41b w 00220fb0 @17 -> + 04000001 @16; 2i
+Debug: 235 62 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 236 62 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00230300 @17; 2i
+Debug: 237 62 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 238 62 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 239 62 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 240 62 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 241 62 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 242 62 riscv-013.c:1722 register_read_direct(): [riscv.cpu] csr4016 = 0x90008028
+Debug: 243 62 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading csr860
+Debug: 244 62 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x22035c; access register, size=32, postexec=0, transfer=1, write=0, regno=0x35c
+Debug: 245 62 riscv-013.c:415 scan(): 41b w 0022035c @17 -> + 90008028 @04; 2i
+Debug: 246 62 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220fb0 @17; 2i
+Debug: 247 62 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 248 62 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 249 63 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 250 63 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 251 63 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 252 63 riscv-013.c:1722 register_read_direct(): [riscv.cpu] csr860 = 0x90008028
+Info : 253 63 riscv-013.c:2097 examine(): [riscv.cpu] S?aia detected with IMSIC
+Debug: 254 63 riscv-013.c:2109 examine(): [riscv.cpu]  XLEN=32, misa=0x90008028
+Debug: 255 63 riscv-013.c:1674 register_write_direct(): [riscv.cpu] Writing 0x90008028 to s0
+Debug: 256 63 riscv-013.c:415 scan(): 41b w 90008028 @04 -> + 90008028 @04; 2i
+Debug: 257 63 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 258 63 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x231008; access register, size=32, postexec=0, transfer=1, write=1, regno=0x1008
+Debug: 259 63 riscv-013.c:415 scan(): 41b w 00231008 @17 -> + 90008028 @04; 2i
+Debug: 260 63 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 0022035c @17; 2i
+Debug: 261 63 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 262 63 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 263 63 riscv-013.c:1693 register_write_direct(): [riscv.cpu] s0 <- 0x90008028
+Debug: 264 63 riscv-013.c:1674 register_write_direct(): [riscv.cpu] Writing 0x0 to s1
+Debug: 265 64 riscv-013.c:415 scan(): 41b w 00000000 @04 -> + 04000001 @16; 2i
+Debug: 266 64 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 267 64 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 268 64 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x231009; access register, size=32, postexec=0, transfer=1, write=1, regno=0x1009
+Debug: 269 64 riscv-013.c:415 scan(): 41b w 00231009 @17 -> + 00000000 @04; 2i
+Debug: 270 64 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00231008 @17; 2i
+Debug: 271 64 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 272 64 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 273 64 riscv-013.c:1693 register_write_direct(): [riscv.cpu] s1 <- 0x0
+Debug: 274 64 riscv.c:5509 riscv_init_registers(): [riscv.cpu] create register cache for 4194 registers
+Debug: 275 65 riscv-013.c:1753 set_dcsr_ebreak(): [riscv.cpu] Set dcsr.ebreak*
+Debug: 276 65 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading dcsr from target
+Debug: 277 65 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register dcsr
+Debug: 278 65 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading dcsr
+Debug: 279 65 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x2207b0; access register, size=32, postexec=0, transfer=1, write=0, regno=0x7b0
+Debug: 280 65 riscv-013.c:415 scan(): 41b w 002207b0 @17 -> + 04000001 @16; 2i
+Debug: 281 65 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 282 65 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00231009 @17; 2i
+Debug: 283 65 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 284 65 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 285 65 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 286 65 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 287 65 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 288 65 riscv-013.c:1722 register_read_direct(): [riscv.cpu] dcsr = 0x90008028
+Debug: 289 65 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read dcsr: 0x90008028
+Info : 290 65 riscv-013.c:2151 examine(): [riscv.cpu] Examined RISC-V core; found 1 harts
+Info : 291 65 riscv-013.c:2153 examine(): [riscv.cpu]  XLEN=32, misa=0x90008028
+User : 292 65 target.c:754 target_examine_one(): [riscv.cpu] Target successfully examined.
+Debug: 293 65 target.c:1845 target_call_event_callbacks(): target event 21 (examine-end) for core riscv.cpu
+Debug: 294 65 command.c:152 script_debug(): command - flash init
+Debug: 295 65 tcl.c:1376 handle_flash_init_command(): Initializing flash devices...
+Debug: 296 65 command.c:152 script_debug(): command - nand init
+Debug: 297 65 tcl.c:487 handle_nand_init_command(): Initializing NAND devices...
+Debug: 298 65 command.c:152 script_debug(): command - pld init
+Debug: 299 65 pld.c:194 handle_pld_init_command(): Initializing PLDs...
+Debug: 300 65 command.c:152 script_debug(): command - tpiu init
+Info : 301 65 gdb_server.c:3836 gdb_target_start(): starting gdb server for riscv.cpu on 3333
+Info : 302 66 server.c:297 add_service(): Listening on port 3333 for gdb connections
+Debug: 303 66 command.c:152 script_debug(): command - halt
+Debug: 304 66 target.c:3298 handle_halt_command(): -
+Debug: 305 66 riscv.c:1724 riscv_halt(): [riscv.cpu] halting all harts
+Debug: 306 66 riscv.c:1660 halt_prep(): [riscv.cpu] prep hart, debug_reason=8
+Debug: 307 66 riscv.c:1663 halt_prep(): [riscv.cpu] Hart is already halted.
+Debug: 308 66 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 90008028 @04; 2i
+Debug: 309 66 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 310 66 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 311 66 riscv.c:1683 riscv_halt_go_all_harts(): [riscv.cpu] Hart is already halted.
+Debug: 312 66 target.c:1845 target_call_event_callbacks(): target event 0 (gdb-halt) for core riscv.cpu
+Debug: 313 66 target.c:1845 target_call_event_callbacks(): target event 1 (halted) for core riscv.cpu
+Debug: 314 66 riscv.c:2945 riscv_openocd_poll(): [riscv.cpu] Polling all harts.
+Debug: 315 66 riscv.c:2768 riscv_poll_hart(): [riscv.cpu] polling, target->state=2
+Debug: 316 66 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00030382 @11; 2i
+Debug: 317 66 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 318 66 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 319 66 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 320 66 riscv.c:1595 riscv_flush_registers(): [riscv.cpu] Flushing register cache
+Debug: 321 66 riscv.c:1613 riscv_flush_registers(): [riscv.cpu] Flush of register cache completed
+Debug: 322 66 riscv.c:3001 riscv_openocd_poll(): [riscv.cpu] should_remain_halted=0, should_resume=0
+Debug: 323 66 command.c:152 script_debug(): command - reset
+Debug: 324 66 target.c:1864 target_call_reset_callbacks(): target reset 1 (run)
+Debug: 325 66 command.c:152 script_debug(): command - target names
+Debug: 326 67 command.c:152 script_debug(): command - riscv.cpu invoke-event reset-start
+Debug: 327 67 command.c:152 script_debug(): command - transport select
+Debug: 328 67 command.c:152 script_debug(): command - jtag arp_init-reset
+Debug: 329 67 core.c:1606 jtag_init_reset(): Initializing with hard TRST+SRST reset
+Debug: 330 67 core.c:843 jtag_add_reset(): JTAG reset with TLR instead of TRST
+Debug: 331 67 core.c:328 jtag_call_event_callbacks(): jtag event: TAP reset
+Debug: 332 67 core.c:1509 jtag_init_inner(): Init JTAG chain
+Debug: 333 67 core.c:328 jtag_call_event_callbacks(): jtag event: TAP reset
+Debug: 334 67 core.c:1234 jtag_examine_chain(): DR scan interrogation for IDCODE/BYPASS
+Debug: 335 67 core.c:328 jtag_call_event_callbacks(): jtag event: TAP reset
+Info : 336 67 core.c:1133 jtag_examine_chain_display(): JTAG tap: riscv.cpu tap/device found: 0x10001c3f (mfg: 0x61f (Ventana Micro Systems), part: 0x0001, ver: 0x1)
+Debug: 337 67 core.c:1364 jtag_validate_ircapture(): IR capture validation scan
+Debug: 338 69 core.c:1421 jtag_validate_ircapture(): riscv.cpu: IR capture 0x01
+Debug: 339 69 command.c:152 script_debug(): command - transport select
+Debug: 340 69 command.c:152 script_debug(): command - riscv.cpu cget -chain-position
+Debug: 341 69 command.c:152 script_debug(): command - jtag tapisenabled riscv.cpu
+Debug: 342 69 command.c:152 script_debug(): command - riscv.cpu invoke-event examine-start
+Debug: 343 69 command.c:152 script_debug(): command - riscv.cpu arp_examine allow-defer
+Debug: 344 69 riscv.c:1539 riscv_examine(): [riscv.cpu] Starting examination
+Debug: 345 69 riscv.c:1541 riscv_examine(): [riscv.cpu] Target was already examined.
+Debug: 346 69 command.c:152 script_debug(): command - riscv.cpu invoke-event examine-end
+Debug: 347 69 command.c:152 script_debug(): command - riscv.cpu invoke-event reset-assert-pre
+Debug: 348 69 command.c:152 script_debug(): command - transport select
+Debug: 349 69 command.c:152 script_debug(): command - riscv.cpu cget -chain-position
+Debug: 350 69 command.c:152 script_debug(): command - jtag tapisenabled riscv.cpu
+Debug: 351 69 command.c:152 script_debug(): command - riscv.cpu arp_reset assert 0
+Debug: 352 69 target.c:2201 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 353 69 riscv.c:1764 riscv_assert_reset(): [riscv.cpu] coreid: [0]
+Debug: 354 69 riscv.c:4756 riscv_invalidate_register_cache(): [riscv.cpu] Invalidating register cache.
+Debug: 355 69 riscv-013.c:415 scan(): 41b w 00000003 @10 -> + 00030382 @11; 2i
+Debug: 356 69 riscv-013.c:425 scan():  ndmreset dmactive ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 357 69 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000001 @10; 2i
+Debug: 358 69 riscv-013.c:425 scan():  ->  dmactive
+Debug: 359 69 riscv-013.c:5014 riscv013_invalidate_cached_debug_buffer(): [riscv.cpu] Invalidating progbuf cache
+Debug: 360 69 command.c:152 script_debug(): command - riscv.cpu invoke-event reset-assert-post
+Debug: 361 69 command.c:152 script_debug(): command - riscv.cpu invoke-event reset-deassert-pre
+Debug: 362 69 command.c:152 script_debug(): command - transport select
+Debug: 363 69 command.c:152 script_debug(): command - riscv.cpu cget -chain-position
+Debug: 364 69 command.c:152 script_debug(): command - jtag tapisenabled riscv.cpu
+Debug: 365 69 command.c:152 script_debug(): command - riscv.cpu arp_reset deassert 0
+Debug: 366 69 target.c:2201 target_free_all_working_areas_restore(): freeing all working areas
+Debug: 367 69 riscv.c:1772 riscv_deassert_reset(): [riscv.cpu] coreid: [0]
+Debug: 368 69 riscv-013.c:415 scan(): 41b w 00000001 @10 -> + 00000003 @10; 2i
+Debug: 369 69 riscv-013.c:425 scan():  dmactive ->  ndmreset dmactive
+Debug: 370 69 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000003 @10; 2i
+Debug: 371 69 riscv-013.c:425 scan():  ->  ndmreset dmactive
+Debug: 372 69 riscv-013.c:2857 deassert_reset(): [riscv.cpu] Waiting for hart to come out of reset.
+Debug: 373 70 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00000001 @10; 2i
+Debug: 374 70 riscv-013.c:425 scan():  ->  dmactive
+Debug: 375 70 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 000f0382 @11; 2i
+Debug: 376 70 riscv-013.c:425 scan():  ->  allhavereset anyhavereset allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 377 70 riscv-013.c:415 scan(): 41b w 10000001 @10 -> + 000f0382 @11; 2i
+Debug: 378 70 riscv-013.c:425 scan():  dmactive ackhavereset ->  allhavereset anyhavereset allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 379 70 riscv-013.c:415 scan(): 41b - 00000000 @10 -> + 00000001 @10; 2i
+Debug: 380 70 riscv-013.c:425 scan():  ->  dmactive
+Debug: 381 70 command.c:152 script_debug(): command - riscv.cpu invoke-event reset-deassert-post
+Debug: 382 70 command.c:152 script_debug(): command - riscv.cpu invoke-event reset-end
+Debug: 383 70 riscv.c:2945 riscv_openocd_poll(): [riscv.cpu] Polling all harts.
+Debug: 384 70 riscv.c:2768 riscv_poll_hart(): [riscv.cpu] polling, target->state=1
+Debug: 385 70 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00000001 @10; 2i
+Debug: 386 70 riscv-013.c:425 scan():  ->  dmactive
+Debug: 387 70 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 388 70 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 389 70 riscv.c:1595 riscv_flush_registers(): [riscv.cpu] Flushing register cache
+Debug: 390 70 riscv.c:1613 riscv_flush_registers(): [riscv.cpu] Flush of register cache completed
+Debug: 391 70 riscv.c:2820 riscv_poll_hart(): [riscv.cpu]   triggered a halt; previous_target_state=1
+Debug: 392 70 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading dcsr
+Debug: 393 70 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x2207b0; access register, size=32, postexec=0, transfer=1, write=0, regno=0x7b0
+Debug: 394 70 riscv-013.c:415 scan(): 41b w 002207b0 @17 -> + 00030382 @11; 2i
+Debug: 395 70 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 396 70 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 002207b0 @17; 2i
+Debug: 397 71 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 398 71 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 399 71 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 400 71 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 401 71 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 402 71 riscv-013.c:1722 register_read_direct(): [riscv.cpu] dcsr = 0x90008028
+Debug: 403 71 riscv-013.c:4958 riscv013_halt_reason(): [riscv.cpu] dcsr.cause: 0x0
+Error: 404 71 riscv-013.c:4979 riscv013_halt_reason(): [riscv.cpu] Unknown DCSR cause field: 0x0
+Error: 405 71 riscv-013.c:4980 riscv013_halt_reason(): [riscv.cpu]   dcsr=0x90008028
+Debug: 406 71 riscv.c:1651 set_debug_reason(): [riscv.cpu] debug_reason=8
+Debug: 407 71 riscv.c:3001 riscv_openocd_poll(): [riscv.cpu] should_remain_halted=0, should_resume=0
+Debug: 408 71 target.c:1845 target_call_event_callbacks(): target event 0 (gdb-halt) for core riscv.cpu
+Debug: 409 71 target.c:1845 target_call_event_callbacks(): target event 1 (halted) for core riscv.cpu
+Debug: 410 71 command.c:152 script_debug(): command - halt
+Debug: 411 71 target.c:3298 handle_halt_command(): -
+Debug: 412 71 riscv.c:1724 riscv_halt(): [riscv.cpu] halting all harts
+Debug: 413 71 riscv.c:1660 halt_prep(): [riscv.cpu] prep hart, debug_reason=8
+Debug: 414 71 riscv.c:1663 halt_prep(): [riscv.cpu] Hart is already halted.
+Debug: 415 71 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 90008028 @04; 2i
+Debug: 416 71 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 417 71 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 418 71 riscv.c:1683 riscv_halt_go_all_harts(): [riscv.cpu] Hart is already halted.
+Debug: 419 71 target.c:1845 target_call_event_callbacks(): target event 0 (gdb-halt) for core riscv.cpu
+Debug: 420 71 target.c:1845 target_call_event_callbacks(): target event 1 (halted) for core riscv.cpu
+Debug: 421 71 riscv.c:2945 riscv_openocd_poll(): [riscv.cpu] Polling all harts.
+Debug: 422 71 riscv.c:2768 riscv_poll_hart(): [riscv.cpu] polling, target->state=2
+Debug: 423 71 riscv-013.c:415 scan(): 41b r 00000000 @11 -> + 00030382 @11; 2i
+Debug: 424 71 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 425 71 riscv-013.c:415 scan(): 41b - 00000000 @11 -> + 00030382 @11; 2i
+Debug: 426 71 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 427 71 riscv.c:1595 riscv_flush_registers(): [riscv.cpu] Flushing register cache
+Debug: 428 71 riscv.c:1613 riscv_flush_registers(): [riscv.cpu] Flush of register cache completed
+Debug: 429 71 riscv.c:3001 riscv_openocd_poll(): [riscv.cpu] should_remain_halted=0, should_resume=0
+Debug: 430 71 command.c:152 script_debug(): command - load_image C:/Users/wilson/Desktop/Projects/ai_risv32KC/software/Project_ai_riscv32KC/build/firmware.elf
+Debug: 431 72 configuration.c:88 find_file(): found C:/Users/wilson/Desktop/Projects/ai_risv32KC/software/Project_ai_riscv32KC/build/firmware.elf
+Debug: 432 72 image.c:65 autodetect_image_type(): ELF image detected.
+Debug: 433 72 configuration.c:88 find_file(): found C:/Users/wilson/Desktop/Projects/ai_risv32KC/software/Project_ai_riscv32KC/build/firmware.elf
+Debug: 434 72 image.c:623 image_elf_read_headers(): ELF32 image detected.
+Debug: 435 72 image.c:654 image_elf32_read_section(): load segment 0 at 0x0 (sz = 0x3d8)
+Debug: 436 72 image.c:660 image_elf32_read_section(): read elf: size = 0x3d8 at 0x1000
+Debug: 437 72 target.c:2412 target_write_buffer(): writing buffer of 984 byte at 0x80000000
+Debug: 438 72 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading priv from target
+Debug: 439 72 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register priv
+Debug: 440 72 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading dcsr
+Debug: 441 72 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x2207b0; access register, size=32, postexec=0, transfer=1, write=0, regno=0x7b0
+Debug: 442 72 riscv-013.c:415 scan(): 41b w 002207b0 @17 -> + 00030382 @11; 2i
+Debug: 443 72 riscv-013.c:425 scan():  ->  allresumeack anyresumeack allhalted anyhalted authenticated version=2
+Debug: 444 72 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 002207b0 @17; 2i
+Debug: 445 72 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 446 72 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 447 72 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 448 72 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 449 72 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 450 72 riscv-013.c:1722 register_read_direct(): [riscv.cpu] dcsr = 0x90008028
+Debug: 451 72 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read priv: 0x4
+Debug: 452 72 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading priv from target
+Debug: 453 72 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register priv
+Debug: 454 72 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading dcsr
+Debug: 455 72 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x2207b0; access register, size=32, postexec=0, transfer=1, write=0, regno=0x7b0
+Debug: 456 72 riscv-013.c:415 scan(): 41b w 002207b0 @17 -> + 90008028 @04; 2i
+Debug: 457 73 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 002207b0 @17; 2i
+Debug: 458 73 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 459 73 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 460 73 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 461 73 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 462 73 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 463 73 riscv-013.c:1722 register_read_direct(): [riscv.cpu] dcsr = 0x90008028
+Debug: 464 73 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read priv: 0x4
+Debug: 465 73 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading mstatus from target
+Debug: 466 73 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register mstatus
+Debug: 467 73 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading mstatus
+Debug: 468 73 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220300; access register, size=32, postexec=0, transfer=1, write=0, regno=0x300
+Debug: 469 73 riscv-013.c:415 scan(): 41b w 00220300 @17 -> + 90008028 @04; 2i
+Debug: 470 73 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 002207b0 @17; 2i
+Debug: 471 74 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 472 74 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 473 75 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 474 75 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 475 75 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 476 75 riscv-013.c:1722 register_read_direct(): [riscv.cpu] mstatus = 0x90008028
+Debug: 477 75 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read mstatus: 0x90008028
+Debug: 478 75 riscv.c:2027 riscv_effective_privilege_mode(): [riscv.cpu] Effective mode=0; v=1
+Debug: 479 75 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading hstatus from target
+Debug: 480 75 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register csr1536
+Debug: 481 75 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading csr1536
+Debug: 482 75 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220600; access register, size=32, postexec=0, transfer=1, write=0, regno=0x600
+Debug: 483 75 riscv-013.c:415 scan(): 41b w 00220600 @17 -> + 90008028 @04; 2i
+Debug: 484 75 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220300 @17; 2i
+Debug: 485 75 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 486 75 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 487 75 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 488 75 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 489 75 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 490 75 riscv-013.c:1722 register_read_direct(): [riscv.cpu] csr1536 = 0x90008028
+Debug: 491 75 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read hstatus: 0x90008028
+Debug: 492 75 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading priv from target
+Debug: 493 75 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register priv
+Debug: 494 75 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading dcsr
+Debug: 495 75 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x2207b0; access register, size=32, postexec=0, transfer=1, write=0, regno=0x7b0
+Debug: 496 76 riscv-013.c:415 scan(): 41b w 002207b0 @17 -> + 90008028 @04; 2i
+Debug: 497 76 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220600 @17; 2i
+Debug: 498 76 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 499 76 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 500 76 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 501 76 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 502 76 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 503 76 riscv-013.c:1722 register_read_direct(): [riscv.cpu] dcsr = 0x90008028
+Debug: 504 76 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read priv: 0x4
+Debug: 505 76 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading vsatp from target
+Debug: 506 76 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register csr640
+Debug: 507 76 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading csr640
+Debug: 508 76 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220280; access register, size=32, postexec=0, transfer=1, write=0, regno=0x280
+Debug: 509 76 riscv-013.c:415 scan(): 41b w 00220280 @17 -> + 90008028 @04; 2i
+Debug: 510 76 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 002207b0 @17; 2i
+Debug: 511 77 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 512 77 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 513 77 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 514 77 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 515 77 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 516 77 riscv-013.c:1722 register_read_direct(): [riscv.cpu] csr640 = 0x90008028
+Debug: 517 77 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read vsatp: 0x90008028
+Debug: 518 77 riscv.c:2228 riscv_virt2phys_v(): [riscv.cpu] VS-stage translation mode: 1
+Debug: 519 77 riscv.c:4942 riscv_get_register(): [riscv.cpu] Reading hgatp from target
+Debug: 520 77 riscv-013.c:4696 riscv013_get_register(): [riscv.cpu] reading register csr1664
+Debug: 521 77 riscv-013.c:1703 register_read_direct(): [riscv.cpu] Reading csr1664
+Debug: 522 77 riscv-013.c:886 execute_abstract_command(): [riscv.cpu] command=0x220680; access register, size=32, postexec=0, transfer=1, write=0, regno=0x680
+Debug: 523 77 riscv-013.c:415 scan(): 41b w 00220680 @17 -> + 90008028 @04; 2i
+Debug: 524 77 riscv-013.c:415 scan(): 41b r 00000000 @16 -> + 00220280 @17; 2i
+Debug: 525 77 riscv-013.c:415 scan(): 41b - 00000000 @16 -> + 04000001 @16; 2i
+Debug: 526 77 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 527 77 riscv-013.c:415 scan(): 41b r 00000000 @04 -> + 04000001 @16; 2i
+Debug: 528 77 riscv-013.c:425 scan():  ->  progbufsize=4 datacount=1
+Debug: 529 78 riscv-013.c:415 scan(): 41b - 00000000 @04 -> + 90008028 @04; 2i
+Debug: 530 78 riscv-013.c:1722 register_read_direct(): [riscv.cpu] csr1664 = 0x90008028
+Debug: 531 78 riscv.c:4950 riscv_get_register(): [riscv.cpu] Read hgatp: 0x90008028
+Debug: 532 78 riscv.c:2235 riscv_virt2phys_v(): [riscv.cpu] G-stage translation mode: 1
+Debug: 533 78 riscv.c:2137 riscv_address_translate(): [riscv.cpu] mode=Sv32; ppn=0x8028; virtual=0x80000000
+Debug: 534 78 riscv.c:2137 riscv_address_translate(): [riscv.cpu] mode=Sv32x4; ppn=0x8028; virtual=0x8028800
+Debug: 535 82 server.c:608 sig_handler(): Terminating on Signal 22

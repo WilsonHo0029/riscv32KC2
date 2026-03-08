@@ -1,0 +1,133 @@
+//================================================================================
+// RISC-V 32KC2 FPGA TOP LEVEL
+//================================================================================
+// Purpose: FPGA top-level wrapper for the RISC-V 32KC2 System.
+// Description: Provides standard FPGA pin mapping and reset synchronization for
+//              deploying the RISC-V system on FPGA hardware.
+//
+// Architecture: RV32IMC_Zicsr_Zifencei
+// Debug: RISC-V Debug Specification 0.13
+//================================================================================
+
+module riscv32KC2_fpga (
+    // FPGA Board Signals
+    input               fpga_clk,       // Board clock input
+    input               fpga_rst_n,     // Board reset button (active-low)
+    
+    // JTAG Interface Pins
+    input               jtag_tck,       // JTAG test clock
+    input               jtag_tms,       // JTAG test mode select
+    input               jtag_tdi,       // JTAG test data input
+    output              jtag_tdo,       // JTAG test data output
+    
+    // UART Pins
+    output              uart_txd,       // UART transmit data
+    input               uart_rxd,       // UART receive data
+    
+    // GPIO Pins
+    inout [3:0]         gpio
+);
+
+    //----------------------------------------------------------------------------
+    // Internal Signals
+    //----------------------------------------------------------------------------
+    wire sys_clk;
+    wire sys_rst_n;
+    wire jtag_trst_n = fpga_rst_n;
+    wire lfclk;
+    // Reset synchronization registers
+    reg [1:0] sync_rst_n_reg;
+    
+    // GPIO Internal Signals
+    wire [31:0] gpio_i;         // GPIO input
+    wire [31:0] gpio_o;         // GPIO output
+    wire [31:0] gpio_oe;        // GPIO output enable
+    wire [31:0] gpio_ie;        // GPIO input enable
+    wire [31:0] gpio_pue;       // GPIO pull-up enable
+    wire [31:0] gpio_pde;       // GPIO pull-down enable
+    wire [31:0] gpio_ds0;       // GPIO drive strength 0
+    wire [31:0] gpio_ds1;       // GPIO drive strength 1
+    
+    
+    // GPIO Bidirectional Pin Assignment
+    assign gpio[0] = gpio_oe[0] ? gpio_o[0] : 1'bz;
+    assign gpio[1] = gpio_oe[1] ? gpio_o[1] : 1'bz;
+    assign gpio[2] = gpio_oe[2] ? gpio_o[2] : 1'bz;
+    assign gpio[3] = gpio_oe[3] ? gpio_o[3] : 1'bz;
+    assign gpio_i[3:0] = gpio[3:0];
+    //----------------------------------------------------------------------------
+    // Clock and Reset Management
+    //----------------------------------------------------------------------------
+    // In a production FPGA design, a Clock Management Tile (CMT/PLL/MMCM) 
+    // would be instantiated here to generate system clocks.
+    //assign sys_clk = fpga_clk;
+    reg[7:0] lfcnt;
+    always@(posedge lfclk or negedge fpga_rst_n) begin
+	if(~fpga_rst_n)
+		lfcnt <= 8'd0;
+	else
+		lfcnt <= lfcnt + 8'd1;
+    end
+    riscv32KC2_fpga_pll u_pll(
+        // Clock out ports
+        .clk_out1(sys_clk),
+        .clk_out2(lfclk),
+        // Status and control signals
+        .reset(1'b0),
+        // Clock in ports
+        .clk_in1(fpga_clk)
+    );
+
+    // Synchronize the external reset button to the system clock domain
+    // to prevent meta-stability issues.
+    always @(posedge sys_clk or negedge fpga_rst_n) begin
+        if (!fpga_rst_n) begin
+            sync_rst_n_reg <= 2'b00;
+        end else begin
+            sync_rst_n_reg <= {sync_rst_n_reg[0], 1'b1};
+        end
+    end
+    
+    assign sys_rst_n = sync_rst_n_reg[1];
+    
+    //----------------------------------------------------------------------------
+    // System Instance (riscv32KC2_system)
+    //----------------------------------------------------------------------------
+    // Instantiate the complete RISC-V system-on-chip.
+    riscv32KC2_system u_system (
+        // System Clock and Reset
+        .sys_clk    (sys_clk),
+        .sys_rst_n  (sys_rst_n),
+        
+        // JTAG Debug Interface
+        .jtag_tck   (jtag_tck),
+        .jtag_tms   (jtag_tms),
+        .jtag_tdi   (jtag_tdi),
+        .jtag_tdo   (jtag_tdo),
+        .jtag_trst_n(jtag_trst_n),
+        
+        // UART Interface
+        .uart_txd   (uart_txd),
+        .uart_rxd   (uart_rxd),
+        
+        // GPIO Interface
+        .gpio_i     (gpio_i),
+        .gpio_o     (gpio_o),
+        .gpio_oe    (gpio_oe),
+        .gpio_ie    (gpio_ie),
+        .gpio_pue   (gpio_pue),
+        .gpio_pde   (gpio_pde),
+        .gpio_ds0   (gpio_ds0),
+        .gpio_ds1   (gpio_ds1),
+        
+        // CLINT RTC Interface
+        .rtc_i      (lfcnt[7])
+    );
+
+endmodule
+
+//================================================================================
+// END OF FPGA TOP LEVEL
+//================================================================================
+
+

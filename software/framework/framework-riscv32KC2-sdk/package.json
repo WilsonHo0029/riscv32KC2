@@ -1,0 +1,19 @@
+﻿{
+  "name": "framework-riscv32KC2-sdk",
+  "version": "0.1.0",
+  "description": "AI RISC-V KC32 Software Development Kit",
+  "keywords": [
+    "framework",
+    "sdk",
+    "risc-v",
+    "riscv32KC2",
+    "RV32IMAC"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
+
+

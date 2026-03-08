@@ -1,0 +1,559 @@
+================================================================================
+RISC-V CORE RTL - FILE STRUCTURE MAP
+================================================================================
+Register Transfer Level (RTL) Source Code Directory
+Architecture: RV32IMAC_Zicsr_Zifencei
+Debug: RISC-V Debug Specification 0.13
+================================================================================
+
+rtl/
+├── riscv_core/                    [Main RISC-V Core Implementation]
+│   ├── riscv_defines.v            [Central definitions & constants]
+│   ├── riscv_regfile.v            [32x32 register file]
+│   ├── riscv_alu.v                [Arithmetic Logic Unit]
+│   ├── riscv_multdiv.v            [Multiplier/Divider - M extension]
+│   ├── riscv_csr.v                [Control & Status Registers - Zicsr]
+│   ├── riscv_decoder.v            [Consolidated decoder (Compressed, Type, Control)]
+│   ├── riscv_fetch_pc_unit.v       [Next PC generation logic]
+│   ├── riscv_iram_arbit.v         [Instruction RAM arbiter]
+│   ├── riscv_ifu_minidec.v        [Mini decoder for early jump detection]
+│   ├── riscv_if_stage.v           [Stage 1 module (IF/ID: Instruction Fetch & Decode)]
+│   ├── riscv_decode.v             [Instruction Decode wrapper]
+│   ├── riscv_exu.v                [Execution Unit module (EX)]
+│   ├── riscv_mem.v                [Memory access unit (MEM)]
+│   ├── riscv_wb.v                 [Writeback unit (WB)]
+│   ├── riscv_final_stage.v        [Stage 2 module integration]
+│   ├── riscv_axi_ifetch.v         [AXI4 instruction fetch interface]
+│   ├── riscv_axi_data.v           [AXI4 data access interface]
+│   ├── riscv_pipeline.v           [2-stage pipeline integration]
+│   ├── riscv_pipeline_regs.v      [Pipeline register definitions]
+│   ├── riscv_core.v               [Top-level core module]
+│   ├── README.md                  [Core documentation (Markdown)]
+│   └── pipeline.txt               [Signal & Pipeline Analysis (Text)]
+│
+└── debug_module/                  [Debug Module Implementation]
+    ├── riscv_jtag_dtm.v           [JTAG Debug Transport Module]
+    ├── riscv_debug_module.v       [Debug Module - DMI interface]
+    └── riscv_debug_block.v        [Top-level debug block integration]
+
+
+================================================================================
+FILE DESCRIPTIONS
+================================================================================
+
+RISC-V CORE MODULES
+-------------------
+
+riscv_defines.v
+    Type:        Header/Definition file
+    Description: Central definition file containing all instruction opcodes,
+                 function codes, CSR addresses, and constants
+    Contents:    - Instruction opcodes (OP_*)
+                 - Function codes (F3_*, F7_*, F12_*)
+                 - ALU operations (ALU_*)
+                 - Multiply/Divide operations (MD_*)
+                 - Atomic operations (A5_*)
+                 - CSR addresses (CSR_*)
+                 - Debug module addresses (DMI_*)
+    Usage:       Included in modules via `include directive
+    Dependencies: None (used by all modules)
+
+riscv_regfile.v
+    Type:        Execution unit (used by riscv_wb)
+    Description: 32-entry register file (x0-x31) with 2 read ports, 1 write port
+    Features:    - x0 hardwired to zero
+                 - Register forwarding support
+                 - Asynchronous read, synchronous write
+                 - Additional IFU read port for early JALR target calculation
+    Ports:       - Read: rs1_addr, rs2_addr -> rs1_data, rs2_data
+                 - IFU Read: ifu_rs_addr -> ifu_rs_data
+                 - Write: wr_addr, wr_data, we
+    Dependencies: None
+
+riscv_alu.v
+    Type:        Execution unit
+    Description: Arithmetic Logic Unit implementing all RV32I ALU operations
+    Operations:  ADD, SUB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
+    Inputs:      a, b, alu_op
+    Outputs:     result, zero, lt (signed less than), ltu (unsigned less than)
+    Dependencies: riscv_defines.v
+
+riscv_multdiv.v
+    Type:        Execution unit (M extension)
+    Description: Multiplier/Divider unit for M extension
+    Instructions: MUL, MULH, MULHSU, MULHU, DIV, DIVU, REM, REMU
+    Features:    - Multi-cycle operations
+                 - Iterative division algorithm
+                 - Handles division by zero and overflow cases
+    Inputs:      clk, rst_n, valid, a, b, op
+    Outputs:     result, ready
+    Dependencies: riscv_defines.v
+
+riscv_csr.v
+    Type:        Execution unit (Zicsr extension)
+    Description: Control and Status Register file for Zicsr extension
+    CSRs:        mstatus, misa, mie, mtvec, mscratch, mepc, mcause,
+                 mtval, mip, mcycle, minstret, mhartid
+    Operations:  CSRRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI
+    Features:    - Machine mode CSRs
+                 - Trap/exception handling
+                 - Interrupt management
+                 - Counter registers
+    Inputs:      clk, rst_n, csr_addr, csr_wdata, csr_op, csr_we,
+                 trap, trap_pc, trap_cause, trap_value, ext_irq
+    Outputs:     csr_rdata, mtvec, mepc, mie, mip
+    Dependencies: riscv_defines.v
+
+riscv_decoder.v
+    Type:        Instruction processing (Central)
+    Description: Consolidated instruction decoder implementing:
+                 - Standard 32-bit RISC-V decoding
+                 - Compressed instruction expansion (RVC)
+                 - Control signal generation
+                 - Illegal instruction detection
+    Features:    Inlined logic for higher performance and easier timing closure
+    Dependencies: riscv_defines.v
+
+riscv_fetch_pc_unit.v
+    Type:        Control unit (IF stage)
+    Description: Responsible for PC management and next-PC selection
+    Features:    Handles reset redirection, traps, and sequential execution
+    Dependencies: riscv_defines.v
+
+riscv_iram_arbit.v
+    Type:        Bus arbiter
+    Description: Arbitrates between instruction fetch and data access to IRAM
+    Dependencies: None
+
+riscv_hazard_unit (DEPRECATED)
+    Status:      Removed from current 2-stage pipeline. 
+                 Hazard handling is now localized in riscv_pipeline.v.
+
+riscv_axi_ifetch.v
+    Type:        Bus interface
+    Description: AXI4 master interface for instruction fetching
+    Protocol:    AXI4 Read Only (AR + R channels)
+    Features:    - Single-beat reads (32-bit instructions)
+                 - Pipeline flush support
+                 - Address generation from PC
+    Inputs:      clk, rst_n, pc, flush, arready, rdata, rresp, rlast, rvalid
+    Outputs:     instruction, instruction_valid,
+                 araddr, arlen, arsize, arburst, arvalid, rready
+    Dependencies: None
+
+riscv_axi_data.v
+    Type:        Bus interface
+    Description: AXI4 master interface for data memory access
+    Protocol:    Full AXI4 (AW, W, B, AR, R channels)
+    Features:    - Read and write operations
+                 - Byte enables for sub-word accesses
+                 - Single-beat transactions
+    Inputs:      clk, rst_n, mem_req, mem_we, mem_addr, mem_wdata, mem_be,
+                 awready, wready, bresp, bvalid,
+                 arready, rdata, rresp, rlast, rvalid
+    Outputs:     mem_rdata, mem_ready,
+                 awaddr, awlen, awsize, awburst, awvalid,
+                 wdata, wstrb, wlast, wvalid,
+                 bready,
+                 araddr, arlen, arsize, arburst, arvalid,
+                 drready
+    Dependencies: None
+
+riscv_if_stage.v
+    Type:        Pipeline stage module
+    Description: Stage 1 module (IF/ID: Instruction Fetch & Decode)
+    Stage:       Stage 1 (IF/ID)
+    Features:    - Instruction fetch from memory via AXI4 interface
+                 - PC generation and update
+                 - Early jump prediction using mini decoder
+                 - Misprediction detection and recovery
+                 - IF/ID pipeline register management
+    Instantiates: riscv_ifu_minidec
+    Inputs:      clk, rst_n, instr_i, instr_rvalid, ifu_ready,
+                 pipeline_stall, pipeline_flush, debug_mode_pc, dret_taken,
+                 mret_taken, trap_taken, dpc, mepc, trap_vector, jump_target
+    Outputs:     ifetch_addr, ifetch_rvalid, instr_rready, if_id_pc,
+                 if_id_instruction, if_id_valid
+    Dependencies: riscv_defines.v, riscv_ifu_minidec.v
+
+riscv_decode.v
+    Type:        Pipeline stage module
+    Description: Instruction Decode unit (Internal to Stage 1)
+    Stage:       Stage 1 (IF/ID - Decode phase)
+    Features:    - Encapsulates decode stage logic
+                 - Compressed instruction decoding
+                 - Instruction type decoding
+                 - Control signal generation
+                 - Immediate value selection
+                 - Return address calculation
+    Instantiates: riscv_compressed, riscv_instr_type_decoder, riscv_control
+    Inputs:      instruction, pc
+    Outputs:     opcode, rd, funct3, rs1, rs2, funct7, imm_i, imm_b,
+                 selected_imm, is_compressed_inst, compressed_valid,
+                 return_address, control signals (alu_op, mem_req, etc.)
+    Dependencies: riscv_defines.v, riscv_compressed.v,
+                  riscv_instr_type_decoder.v, riscv_control.v
+
+riscv_exu.v
+    Type:        Pipeline stage module
+    Description: Execution Unit module (EX)
+    Stage:       Stage 2 (EX/MEM/WB - EX phase)
+    Features:    - Encapsulates execution stage logic
+                 - ALU operations and input selection
+                 - Multiplier/Divider operations
+                 - CSR operations
+                 - Branch condition evaluation
+                 - Jump/Branch target calculation
+                 - Branch/Jump misprediction detection (compares early prediction with actual result)
+                 - Result selection logic (ALU, Multdiv, CSR, Return Address)
+    Instantiates: riscv_alu, riscv_multdiv, riscv_csr
+    Inputs:      clk, rst_n, if_id_valid, opcode, rd, funct3, rs1, pc,
+                 rs1_data, rs2_data, imm_i, imm_b, selected_imm,
+                 return_address, control signals, pipeline_stall,
+                 if_early_jump_target, if_early_jump_taken (from IF stage),
+                 trap signals, interrupt signals, debug signals
+    Outputs:     alu_result, alu_zero, alu_lt, alu_ltu, branch_taken,
+                 branch_target, jump_target, multdiv_result, multdiv_ready,
+                 multdiv_pending, csr_rdata, mtvec, mepc, interrupt signals,
+                 early_jump_wrong_addr, early_jump_wrong_taken, early_not_jump_need_jump,
+                 reg_rd, reg_wdata_exu, reg_we_exu
+    Dependencies: riscv_defines.v, riscv_alu.v, riscv_multdiv.v, riscv_csr.v
+
+riscv_mem.v
+    Type:        Pipeline stage module
+    Description: Memory Operations module (Stage 2: MEM)
+    Stage:       Stage 2 (EX/MEM/WB - MEM phase)
+    Features:    - Encapsulates memory stage logic
+                 - Load/Store operations
+                 - Atomic Memory Operations (includes riscv_amo module)
+                 - Memory interface control (address, data, byte enable generation)
+                 - Memory write data alignment (byte, halfword, word)
+                 - Memory read data sign extension
+                 - Address misalignment detection for load/store
+                 - Pipeline control: mem_pending and amo_pending signals
+    Instantiates: riscv_amo
+    Inputs:      clk, rst_n, if_id_valid, alu_result, rs1_data, rs2_data,
+                 ctrl_mem_req, ctrl_mem_we, ctrl_mem_size, ctrl_mem_sign_ext,
+                 ctrl_amo_req, ctrl_amo_op, mem_rd_cmd_ack, mem_wr_cmd_ack,
+                 mem_rdata, mem_ready, mem_rvalid
+    Outputs:     mem_req, mem_we, mem_addr, mem_wdata, mem_be,
+                 mem_result, amo_mem_valid, amo_result,
+                 mem_pending, amo_pending,
+                 exception_load_addr_misaligned, exception_store_addr_misaligned
+    Dependencies: riscv_defines.v, riscv_amo.v
+
+riscv_wb.v
+    Type:        Pipeline stage module
+    Description: Writeback module (Stage 2: WB)
+    Stage:       Stage 2 (EX/MEM/WB - WB phase)
+    Features:    - Encapsulates writeback stage logic
+                 - Register file with 2 read ports + 1 IFU read port
+                 - Writeback enable logic (combines EXU enable with memory completion)
+                 - Writeback data selection (combines EXU, memory, and AMO results)
+    Instantiates: riscv_regfile
+    Inputs:      clk, rst_n, rs1_addr, rs2_addr, ifu_rs_addr,
+                 reg_we_exu, reg_rd, reg_wdata_exu,
+                 ctrl_mem_req, ctrl_mem_we, ctrl_reg_src, ctrl_amo_req,
+                 amo_mem_valid, mem_rvalid, mem_ready,
+                 mem_result, amo_result
+    Outputs:     rs1_data, rs2_data, ifu_rs_data,
+                 reg_we, reg_wdata
+    Dependencies: riscv_defines.v, riscv_regfile.v
+
+riscv_pipeline.v
+    Type:        Top-level pipeline
+    Description: 2-stage pipeline implementation (Stage 1: IF/ID + Stage 2: EX/MEM/WB)
+    Stages:      Stage 1 (IF/ID): Instruction Fetch & Decode
+                 Stage 2 (EX/MEM/WB): Execute, Memory Access, Writeback
+    Instantiates: riscv_if_stage, riscv_final_stage
+    Dependencies: riscv_defines.v, riscv_if_stage.v, riscv_final_stage.v
+
+riscv_core.v
+    Type:        Top-level core
+    Description: Complete RISC-V core top-level module
+    Architecture: RV32IMAC_Zicsr_Zifencei
+    Features:    - Full instruction set support
+                 - AXI4 bus interfaces
+                 - Debug interface
+                 - 2-stage pipeline (Stage 1: IF/ID + Stage 2: EX/MEM/WB)
+    Instantiates: riscv_pipeline, riscv_axi_ifetch, riscv_axi_data,
+                  riscv_debug_module
+    Interfaces:  - AXI4 Instruction Fetch (AR, R channels)
+                 - AXI4 Data Access (AW, W, B, AR, R channels)
+                 - Debug Module Interface (DMI)
+    Inputs:      clk, rst_n,
+                 AXI4 IF: arready, rdata, rresp, rlast, rvalid
+                 AXI4 Data: awready, wready, bresp, bvalid,
+                            arready, drdata, drresp, drlast, drvalid
+                 DMI: dmi_req_valid, dmi_req_addr, dmi_req_op, dmi_req_data
+    Outputs:     AXI4 IF: araddr, arlen, arsize, arburst, arvalid, rready
+                 AXI4 Data: awaddr, awlen, awsize, awburst, awvalid,
+                            wdata, wstrb, wlast, wvalid, bready,
+                            daraddr, darlen, darsize, darburst, darvalid, drready
+                 DMI: dmi_req_ready, dmi_resp_valid, dmi_resp_data, dmi_resp_resp
+    Dependencies: riscv_defines.v, riscv_pipeline.v, riscv_axi_ifetch.v,
+                  riscv_axi_data.v, riscv_debug_module.v
+
+
+DEBUG MODULE
+------------
+
+riscv_jtag_dtm.v
+    Type:        Debug transport
+    Description: JTAG Debug Transport Module - bridges JTAG to DMI
+    Standard:    RISC-V Debug Specification 0.13
+    Features:    - Full JTAG TAP controller (16 states)
+                 - DTMCS register (DTM Control and Status)
+                 - DMI register (41-bit for Debug Module access)
+                 - IDCODE register
+    JTAG Instructions:
+                 - IR_IDCODE (0x01): Device identification
+                 - IR_DTMCS (0x10): DTM control/status
+                 - IR_DMI (0x11): DMI access
+                 - IR_BYPASS (0x1F): Bypass
+    Inputs:      tck, tms, tdi, trst_n, dmi_req_ready, dmi_resp_valid,
+                 dmi_resp_data, dmi_resp_resp
+    Outputs:     tdo, dmi_req_valid, dmi_req_addr, dmi_req_op,
+                 dmi_req_data, dmi_resp_ready
+    Dependencies: None
+
+riscv_debug_module.v
+    Type:        Debug module
+    Description: RISC-V Debug Module implementing Debug Spec 0.13
+    Features:    - Hart control (halt, resume, step)
+                 - Register access (read/write GPRs)
+                 - Memory access (from hart perspective)
+                 - Program buffer execution
+                 - Breakpoint support
+    Registers:   dmcontrol, dmstatus, hartinfo, abstractcs, command,
+                 abstractauto, data0, data1, progbuf[0:7]
+    Inputs:      clk, rst_n,
+                 DMI: dmi_req_valid, dmi_req_addr, dmi_req_op, dmi_req_data
+                 Hart: debug_ack, pc
+                 Register: reg_rdata
+                 Memory: mem_rdata, mem_ready
+    Outputs:     DMI: dmi_req_ready, dmi_resp_valid, dmi_resp_data, dmi_resp_resp
+                 Hart: debug_req, pipeline_stall, pipeline_flush
+                 Register: reg_sel, reg_addr, reg_wdata, reg_we
+                 Memory: mem_sel, mem_addr, mem_wdata, mem_we, mem_size
+    Dependencies: riscv_defines.v
+
+riscv_debug_block.v
+    Type:        Top-level debug block
+    Description: Integrated debug block combining JTAG DTM and Debug Module
+    Features:    - Complete debug infrastructure
+                 - JTAG interface for external debugger
+                 - Integrated DMI connection
+                 - Hart, register, and memory interfaces
+    Instantiates: riscv_jtag_dtm, riscv_debug_module
+    Interfaces:  - JTAG: tck, tms, tdi, tdo, trst_n
+                 - System: clk, rst_n
+                 - Hart Control: debug_req, debug_ack, pc, pipeline_stall, pipeline_flush
+                 - Register Access: reg_sel, reg_addr, reg_wdata, reg_we, reg_rdata
+                 - Memory Access: mem_sel, mem_addr, mem_wdata, mem_we, mem_size,
+                                  mem_rdata, mem_ready
+    Dependencies: riscv_jtag_dtm.v, riscv_debug_module.v
+
+
+DOCUMENTATION
+-------------
+
+README.md (riscv_core/)
+    Type:        Documentation (Markdown)
+    Description: Core documentation with architecture overview, module descriptions,
+                 interfaces, pipeline details, CSR information, debug module info,
+                 and usage instructions
+
+pipeline.txt (riscv_core/)
+    Type:        Documentation (Plain Text)
+    Description: Detailed signal analysis and pipeline timing diagrams
+
+
+================================================================================
+MODULE HIERARCHY
+================================================================================
+
+Top Level:
+    riscv_core.v
+        ├── riscv_pipeline.v
+        │   ├── riscv_if_stage.v
+        │   │   └── riscv_ifu_minidec.v
+        │   └── riscv_final_stage.v
+        │       ├── riscv_decode.v
+        │       │   └── riscv_decoder.v
+        │       ├── riscv_exu.v
+        │       │   ├── riscv_alu.v
+        │       │   ├── riscv_multdiv.v
+        │       │   └── riscv_csr.v
+        │       ├── riscv_mem.v
+        │       └── riscv_wb.v
+        │           └── riscv_regfile.v
+        ├── riscv_axi_ifetch.v
+        ├── riscv_axi_data.v
+        └── riscv_debug_module.v
+
+    riscv_debug_block.v
+        ├── riscv_jtag_dtm.v
+        └── riscv_debug_module.v
+
+
+Module Dependencies:
+    riscv_defines.v
+        └── Used by: All modules (via `include)
+
+    riscv_regfile.v
+        └── Used by: riscv_wb.v
+
+    riscv_alu.v
+        └── Used by: riscv_exu.v
+
+    riscv_decoder.v
+        └── Used by: riscv_decode.v
+
+    riscv_if_stage.v
+        └── Used by: riscv_pipeline.v
+
+    riscv_decode.v
+        └── Used by: riscv_final_stage.v
+
+    riscv_exu.v
+        └── Used by: riscv_final_stage.v
+
+    riscv_mem.v
+        └── Used by: riscv_final_stage.v
+
+    riscv_wb.v
+        └── Used by: riscv_final_stage.v
+
+    riscv_final_stage.v
+        └── Used by: riscv_pipeline.v
+
+    riscv_pipeline.v
+        └── Used by: riscv_core.v
+
+    riscv_axi_ifetch.v
+        └── Used by: riscv_core.v
+
+    riscv_axi_data.v
+        └── Used by: riscv_core.v
+
+    riscv_multdiv.v
+        └── Used by: riscv_exu.v
+
+    riscv_csr.v
+        └── Used by: riscv_exu.v
+
+    riscv_jtag_dtm.v
+        └── Used by: riscv_debug_block.v
+
+    riscv_debug_module.v
+        └── Used by: riscv_core.v, riscv_debug_block.v
+
+    riscv_final_stage.v
+        └── Integrates: riscv_decode, riscv_exu, riscv_mem, riscv_wb
+
+
+================================================================================
+FILE STATISTICS
+================================================================================
+
+Total Files: 22
+  - Verilog RTL Modules: 19 files
+  - Documentation Files: 3 files
+
+By Category:
+  - Core Execution Units: 4 files
+     (regfile, alu, multdiv, csr)
+  - Instruction Processing: 2 files
+     (decode, decoder)
+  - Pipeline & Control: 6 files
+     (pipeline, if_stage, final_stage, fetch_pc, iram_arbit, pipeline_regs)
+  - Bus Interfaces: 2 files
+     (axi_ifetch, axi_data)
+  - Top-Level: 1 file
+     (riscv_core)
+  - Definitions: 1 file
+     (riscv_defines)
+  - Debug Module: 3 files
+     (jtag_dtm, debug_module, debug_block)
+  - Documentation: 3 files
+     (README.md, pipeline.txt, FileMap.txt)
+
+By Directory:
+  - riscv_core/: 19 files (17 Verilog + 2 documentation)
+  - debug_module/: 3 files (all Verilog)
+
+
+================================================================================
+BUILD ORDER (Recommended Synthesis/Simulation Order)
+================================================================================
+
+Phase 1 - Definitions (no dependencies):
+    1. riscv_defines.v
+
+Phase 2 - Execution Units (depend only on defines):
+    2. riscv_regfile.v
+    3. riscv_alu.v
+    4. riscv_multdiv.v
+    5. riscv_csr.v
+ 
+Phase 3 - Instruction Processing:
+    6. riscv_decoder.v
+    7. riscv_decode.v
+
+Phase 4 - Pipeline Components:
+    8. riscv_fetch_pc_unit.v
+    9. riscv_iram_arbit.v
+    10. riscv_ifu_minidec.v
+    11. riscv_if_stage.v
+    12. riscv_exu.v
+    13. riscv_mem.v
+    14. riscv_wb.v
+    15. riscv_final_stage.v
+
+Phase 5 - Interface & Integration:
+    16. riscv_axi_ifetch.v
+    17. riscv_axi_data.v
+    18. riscv_pipeline_regs.v
+    19. riscv_pipeline.v
+
+Phase 6 - Debug Modules:
+    20. riscv_jtag_dtm.v
+    21. riscv_debug_module.v
+    22. riscv_debug_block.v
+
+Phase 7 - System Top:
+    23. riscv_core.v
+
+
+================================================================================
+INTERFACE CONNECTIONS
+================================================================================
+
+Core to External:
+    riscv_core
+        ├── AXI4 Instruction Fetch → Memory System
+        ├── AXI4 Data Access ↔ Memory System
+        └── DMI ↔ Debug Block (or external debugger)
+
+Debug Block:
+    riscv_debug_block
+        ├── JTAG ↔ External Debugger
+        ├── DMI (internal) ↔ riscv_jtag_dtm ↔ riscv_debug_module
+        ├── Hart Control → RISC-V Core
+        ├── Register Access ↔ RISC-V Core Register File
+        └── Memory Access → Memory System
+
+Internal Core:
+    riscv_pipeline
+        ├── Instruction Fetch → riscv_axi_ifetch
+        ├── Data Access → riscv_axi_data
+        ├── Register Access → riscv_regfile
+        ├── ALU Operations → riscv_alu
+        └── Control Logic ← riscv_decoder
+
+
+================================================================================
+END OF FILE MAP
+================================================================================
+

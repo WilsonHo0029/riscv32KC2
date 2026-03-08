@@ -1,0 +1,8 @@
+verilog xil_defaultlib -i "E:/Xilinx/2025.2/Vivado/data/rsb/busdef" --include "../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1" \
+"../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1/riscv32KC2_fpga_pll_clk_wiz.v" \
+"../../../../riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1/riscv32KC2_fpga_pll.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,79 @@
+﻿
+#
+# Mnemonic Maps
+#
+mmap new -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+array unset createdGroup
+array set createdGroup {}
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.tck}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.tdi}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.tdo}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.tms}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.trst_n}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_inst_ram_blk.u_sram.mem[0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_inst_ram_blk.u_sram.mem[1]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.completed_pc[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.completed_instruction[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.instruction_complete}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.pc[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.next_pc[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.debug_mode_pc}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.dret_taken}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.mret_taken}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.trap_taken}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.early_jump_valid}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.if_id_pc[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.if_id_instruction[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.if_id_valid}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {tb_riscv32KC2_system.u_system.u_riscv_core.u_pipeline.u_if_stage.if_early_jump_taken}]}
+	} ]]
+
+waveform xview limits 0 141327062500ps
+

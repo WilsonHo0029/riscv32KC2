@@ -1,0 +1,99 @@
+﻿{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start OpenOCD",
+            "type": "shell",
+            "command": "${env:USERPROFILE}\\.platformio\\packages\\tool-openocd-kinetic\\bin\\openocd.exe",
+            "args": [
+                "-f",
+                "${workspaceFolder}/software/Project_riscv32KC2/openocd.cfg"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^.*$",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*Open On-Chip Debugger.*",
+                    "endsPattern": ".*Listening on port 3333.*"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false
+            }
+        },
+        {
+            "label": "Build Firmware",
+            "type": "shell",
+            "command": "pio",
+            "args": [
+                "run",
+                "-d",
+                "${workspaceFolder}/software/Project_riscv32KC2"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Clean Build",
+            "type": "shell",
+            "command": "pio",
+            "args": [
+                "run",
+                "--target",
+                "clean",
+                "-d",
+                "${workspaceFolder}/software/Project_riscv32KC2"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Start PlatformIO Debug Server",
+            "type": "shell",
+            "command": "pio",
+            "args": [
+                "debug",
+                "-d",
+                "${workspaceFolder}/software/Project_riscv32KC2"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^.*$",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*Open On-Chip Debugger.*|.*PlatformIO Debug.*",
+                    "endsPattern": ".*Listening on port 3333.*|.*Ready for connections.*"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false
+            }
+        }
+    ]
+}
+

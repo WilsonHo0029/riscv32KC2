@@ -1,0 +1,260 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Mar  8 23:33:40 2026
+| Host         : DESKTOP-9AH11CN running 64-bit major release  (build 9200)
+| Command      : report_methodology -file riscv32KC2_fpga_methodology_drc_routed.rpt -pb riscv32KC2_fpga_methodology_drc_routed.pb -rpx riscv32KC2_fpga_methodology_drc_routed.rpx
+| Design       : riscv32KC2_fpga
+| Device       : xc7a200tsbg484-1
+| Speed File   : -1
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 37
++-----------+----------+-------------------------------------------------------------------------------------------------------+--------+
+| Rule      | Severity | Description                                                                                           | Checks |
++-----------+----------+-------------------------------------------------------------------------------------------------------+--------+
+| LUTAR-1   | Warning  | LUT drives async reset alert                                                                          | 1      |
+| SYNTH-6   | Warning  | Timing of a RAM block might be sub-optimal                                                            | 8      |
+| SYNTH-16  | Warning  | Address collision                                                                                     | 8      |
+| TIMING-10 | Warning  | Missing property on synchronizer                                                                      | 1      |
+| TIMING-18 | Warning  | Missing input or output delay                                                                         | 1      |
+| TIMING-47 | Warning  | False path, asynchronous clock group or max delay datapath only constraint between synchronous clocks | 2      |
+| XDCC-1    | Warning  | Scoped Clock constraint overwritten with the same name                                                | 1      |
+| XDCC-7    | Warning  | Scoped Clock constraint overwritten on the same source                                                | 1      |
+| XDCH-2    | Warning  | Same min and max delay values on IO port                                                              | 14     |
++-----------+----------+-------------------------------------------------------------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell u_system/u_debug_block/u_debug_module/r_sys_debug_rstn[1]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_system/r_sys_debug_rstn_reg[0]/CLR, u_system/r_sys_debug_rstn_reg[1]/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-16#1 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#2 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#3 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_2 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#4 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_dram_sram/memory[1].non_last.mem_reg_3 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#5 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_0 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#6 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_1 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#7 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_2 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+SYNTH-16#8 Warning
+Address collision  
+Block RAM u_system/u_riscv_core/u_iram_sram/memory[1].non_last.mem_reg_3 may get memory collision error if read and write address collide. Use of address collision resolution circuitry is recommended.
+Related violations: <none>
+
+TIMING-10#1 Warning
+Missing property on synchronizer  
+One or more logic synchronizer has been detected between 2 clock domains but the synchronizer does not have the property ASYNC_REG defined on one or both registers. It is recommended to run report_cdc for a complete and detailed CDC coverage
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An output delay is missing on jtag_tdo relative to the rising and/or falling clock edge(s) of jtag_tck.
+Related violations: <none>
+
+TIMING-47#1 Warning
+False path, asynchronous clock group or max delay datapath only constraint between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks lfclk and sys_clk (see constraint position 11 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via  set_false_path, set_clock_groups or set_max_delay -datapath_only may result in failure in hardware.
+Related violations: <none>
+
+TIMING-47#2 Warning
+False path, asynchronous clock group or max delay datapath only constraint between synchronous clocks  
+A False Path timing constraint is set between synchronous clocks sys_clk and lfclk (see constraint position 10 in the Timing Constraint window in Vivado IDE). Masking entire synchronous clock domains via  set_false_path, set_clock_groups or set_max_delay -datapath_only may result in failure in hardware.
+Related violations: <none>
+
+XDCC-1#1 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 10.000 -name fpga_clk -waveform {0.000 5.000} [get_ports fpga_clk] (Source: F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 2))
+Previous: create_clock -period 10.000 [get_ports fpga_clk] (Source: f:/Work/risv32KC2/hdl/fpga/riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1/riscv32KC2_fpga_pll.xdc (Line: 53))
+Related violations: <none>
+
+XDCC-7#1 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 10.000 -name fpga_clk -waveform {0.000 5.000} [get_ports fpga_clk] (Source: F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 2))
+Previous: create_clock -period 10.000 [get_ports fpga_clk] (Source: f:/Work/risv32KC2/hdl/fpga/riscv32KC2.gen/sources_1/ip/riscv32KC2_fpga_pll_1/riscv32KC2_fpga_pll.xdc (Line: 53))
+Related violations: <none>
+
+XDCH-2#1 Warning
+Same min and max delay values on IO port  
+The same input delay of 1.000 ns has been defined on port 'gpio[0]' for both max and min. Make sure this reflects the design intent.
+set_input_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 52)
+Related violations: <none>
+
+XDCH-2#2 Warning
+Same min and max delay values on IO port  
+The same input delay of 1.000 ns has been defined on port 'gpio[1]' for both max and min. Make sure this reflects the design intent.
+set_input_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 52)
+Related violations: <none>
+
+XDCH-2#3 Warning
+Same min and max delay values on IO port  
+The same input delay of 1.000 ns has been defined on port 'gpio[2]' for both max and min. Make sure this reflects the design intent.
+set_input_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 52)
+Related violations: <none>
+
+XDCH-2#4 Warning
+Same min and max delay values on IO port  
+The same input delay of 1.000 ns has been defined on port 'gpio[3]' for both max and min. Make sure this reflects the design intent.
+set_input_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 52)
+Related violations: <none>
+
+XDCH-2#5 Warning
+Same min and max delay values on IO port  
+The same input delay of 5.000 ns has been defined on port 'fpga_rst_n' for both max and min. Make sure this reflects the design intent.
+set_input_delay 5.000 [get_ports fpga_rst_n]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 53)
+Related violations: <none>
+
+XDCH-2#6 Warning
+Same min and max delay values on IO port  
+The same input delay of 5.000 ns has been defined on port 'jtag_tdi' relative to clock jtag_tck for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock jtag_tck 5.000 [get_ports jtag_tdi]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 49)
+Related violations: <none>
+
+XDCH-2#7 Warning
+Same min and max delay values on IO port  
+The same input delay of 5.000 ns has been defined on port 'jtag_tms' relative to clock jtag_tck for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock jtag_tck 5.000 [get_ports jtag_tms]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 50)
+Related violations: <none>
+
+XDCH-2#8 Warning
+Same min and max delay values on IO port  
+The same input delay of 5.000 ns has been defined on port 'uart_rxd' for both max and min. Make sure this reflects the design intent.
+set_input_delay 5.000 [get_ports uart_rxd]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 54)
+Related violations: <none>
+
+XDCH-2#9 Warning
+Same min and max delay values on IO port  
+The same output delay of 1.000 ns has been defined on port 'gpio[0]' for both max and min. Make sure this reflects the design intent.
+set_output_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 47)
+Related violations: <none>
+
+XDCH-2#10 Warning
+Same min and max delay values on IO port  
+The same output delay of 1.000 ns has been defined on port 'gpio[1]' for both max and min. Make sure this reflects the design intent.
+set_output_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 47)
+Related violations: <none>
+
+XDCH-2#11 Warning
+Same min and max delay values on IO port  
+The same output delay of 1.000 ns has been defined on port 'gpio[2]' for both max and min. Make sure this reflects the design intent.
+set_output_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 47)
+Related violations: <none>
+
+XDCH-2#12 Warning
+Same min and max delay values on IO port  
+The same output delay of 1.000 ns has been defined on port 'gpio[3]' for both max and min. Make sure this reflects the design intent.
+set_output_delay 1.000 [get_ports {{gpio[0]} {gpio[1]} {gpio[2]} {gpio[3]}}]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 47)
+Related violations: <none>
+
+XDCH-2#13 Warning
+Same min and max delay values on IO port  
+The same output delay of 5.000 ns has been defined on port 'jtag_tdo' relative to clock jtag_tck for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock jtag_tck 5.000 [get_ports jtag_tdo]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 48)
+Related violations: <none>
+
+XDCH-2#14 Warning
+Same min and max delay values on IO port  
+The same output delay of 5.000 ns has been defined on port 'uart_txd' for both max and min. Make sure this reflects the design intent.
+set_output_delay 5.000 [get_ports uart_txd]
+F:/Work/risv32KC2/hdl/fpga/riscv32KC2.srcs/constrs_1/new/riscv32KC2.xdc (Line: 51)
+Related violations: <none>
+
+

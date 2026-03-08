@@ -1,0 +1,169 @@
+﻿-define DEVICE_riscv32KC2
+// ================================================================================
+// Compilation arguments for riscv32KC2 System
+// ================================================================================
+// Architecture: RISC-V 2-Stage Pipeline (Stage 1: IF/ID, Stage 2: EX/MEM/WB)
+// ISA: RV32IMAC_Zicsr_Zifencei
+// Debug: RISC-V Debug Specification 0.13
+// Bus: AXI4 / AXI4-Lite / APB
+// ================================================================================
+// Compilation Order:
+//   1. Definitions (riscv_defines.v)
+//   2. Core modules (regfile, ALU, decoder, etc.)
+//   3. Extension modules (multdiv, CSR, AMO)
+//   4. Pipeline stage modules (decode, exu, wb, mem)
+//   5. Interface modules (AXI interfaces)
+//   6. Pipeline integration
+//   7. Debug modules
+//   8. Bus infrastructure
+//   9. Memory modules
+//   10. Peripherals
+//   11. CLINT
+//   12. PLIC
+//   13. System integration (top-level)
+// ================================================================================
+// Include directories
+-incdir ../rtl/riscv_core
+-incdir ../rtl/debug_module
+-incdir ../rtl/bus
+-incdir ../rtl/ram
+-incdir ../rtl/misc
+-incdir ../rtl/peripheral/uart
+-incdir ../rtl/peripheral/ad_da_if
+-incdir ../rtl/peripheral/gpio
+-incdir ../rtl/clint
+-incdir ../rtl/plic
+-incdir ../rtl/riscv32KC2_system
+-v
+// testbench
+./tb_riscv32KC2_system.v
+
+// riscv_core
+// Note: riscv_defines.v must be compiled first before files that include it
+../rtl/riscv_core/riscv_defines.v
+../rtl/riscv_core/riscv_regfile.v
+../rtl/riscv_core/riscv_alu.v
+../rtl/riscv_core/riscv_multdiv.v
+../rtl/riscv_core/riscv_csr.v
+// Old decoder modules (now integrated into riscv_decoder.v):
+// ../rtl/riscv_core/riscv_instr_type_decoder.v
+// ../rtl/riscv_core/riscv_compressed.v
+// ../rtl/riscv_core/riscv_control.v
+../rtl/riscv_core/riscv_decoder.v         // Consolidated decoder (integrates compressed, instr_type_decoder, control)
+../rtl/riscv_core/riscv_amo.v             // Atomic Memory Operations (used by riscv_mem)
+// ../rtl/riscv_core/riscv_hazard_unit.v  // Not needed for 2-stage pipeline
+../rtl/riscv_core/riscv_ifu_minidec.v    // IFU mini decoder for early jump detection
+../rtl/riscv_core/riscv_if_stage.v        // Stage 1 module (IF/ID: Instruction Fetch & Decode)
+// Pipeline stage modules (must be compiled before riscv_final_stage.v and riscv_pipeline.v)
+// Note: Compile order must respect dependencies:
+//   - riscv_amo.v must come before riscv_mem.v (riscv_mem instantiates riscv_amo)
+//   - riscv_decoder.v must come before riscv_decode.v (riscv_decode instantiates riscv_decoder)
+//   - All individual stage modules must come before riscv_final_stage.v
+//   - riscv_final_stage.v must come before riscv_pipeline.v
+../rtl/riscv_core/riscv_decode.v          // Stage 1 Decode unit (Logic for riscv_if_stage)
+../rtl/riscv_core/riscv_exu.v             // Execution unit (EX)
+../rtl/riscv_core/riscv_mem.v             // Memory operations (MEM)
+../rtl/riscv_core/riscv_wb.v              // Writeback unit (WB)
+../rtl/riscv_core/riscv_final_stage.v     // Stage 2 module (EX/MEM/WB: integrates EX, MEM, WB)
+../rtl/riscv_core/riscv_axi_ifetch.v
+../rtl/riscv_core/riscv_axi_data.v
+../rtl/riscv_core/riscv_pipeline.v        // Pipeline integration (Stage 1: IF/ID, Stage 2: EX/MEM/WB)
+../rtl/riscv_core/riscv_core.v
+../rtl/riscv_core/riscv_pipeline_regs.v
+// debug_module
+// Note: riscv_instr.v is included via `include, not compiled directly
+../rtl/debug_module/debug_rom_013.v        // Debug ROM for debug mode entry
+../rtl/debug_module/dm_mem.v               // Debug memory module (APB interface)
+../rtl/debug_module/riscv_jtag_dtm.v
+../rtl/debug_module/riscv_debug_module.v
+../rtl/debug_module/riscv_debug_block.v
+// ../rtl/debug_module/debug_apb_bridge.v    // Not used in current top-level
+
+// ================================================================================
+// BUS INFRASTRUCTURE
+// ================================================================================
+// Note: Compile in dependency order - basic modules before complex interconnects
+../rtl/bus/apb_decoder.v                 // APB address decoder (1-to-16 routing)
+../rtl/bus/read_req_to_axi.v             // Instruction fetch to AXI bridge
+../rtl/bus/read_req_to_axi_fallback.v    // Instruction fetch with Boot ROM fallback
+../rtl/bus/write_req_to_axi.v            // Data write to AXI bridge
+../rtl/bus/axi_fifo.v                    // AXI transaction buffer/FIFO
+../rtl/bus/axi_lite_demux.v              // AXI4 demultiplexer (1-to-N, with FIFO tracking)
+../rtl/bus/axi_lite_mux2.v               // AXI4 multiplexer (2-to-1, with FIFO tracking)
+../rtl/bus/axi2apb_bridge.v             // AXI4-Lite to APB protocol bridge
+../rtl/bus/axi_slv_to_dev_inf.v         // AXI slave to device interface (used by CLINT)
+../rtl/bus/riscv32KC2_bus.v            // Main AXI4 interconnect (multi-master, multi-slave)
+// Unused modules (commented out):
+// ../rtl/bus/axi_arbiter.v              // AXI arbiter (not used, bus uses mux2)
+// ../rtl/bus/apb_interconnect.v         // Not used in current top-level
+// ../rtl/bus/axi_apb_splitter.v         // Legacy module, not used
+// ../rtl/bus/axi_lite_mux.v             // Generic version, bus uses mux2
+
+// ================================================================================
+// MEMORY MODULES
+// ================================================================================
+../rtl/ram/mrom.v              // Boot ROM core module (256 bytes, 28 KB address space)
+../rtl/ram/mrom_axi_lite.v     // Boot ROM AXI4-Lite wrapper
+../rtl/ram/sram_block.v        // SRAM block with AXI interface (Instruction & Data RAM)
+
+// ================================================================================
+// PERIPHERAL SUBSYSTEM
+// ================================================================================
+// UART
+../rtl/peripheral/uart/apb_uart.v
+// ADC/DAC Interface
+../rtl/peripheral/ad_da_if/adc.v
+../rtl/peripheral/ad_da_if/da_converters.v
+../rtl/peripheral/ad_da_if/apb_ad_da_if.v
+// GPIO Controller
+../rtl/peripheral/gpio/gpio.v
+../rtl/peripheral/gpio/apb_gpio.v
+// Peripheral subsystem integration
+../rtl/peripheral/riscv32KC2_peripheral.v
+
+// ================================================================================
+// MISC UTILITIES
+// ================================================================================
+../rtl/misc/booth_pp_base_r4.v  // Radix-4 Booth PP Generator
+../rtl/misc/booth_mult_r4.v      // Radix-4 Booth Multiplier
+../rtl/misc/booth_mult_r4_b.v    // Radix-4 Booth Multiplier (Structural)
+../rtl/misc/booth_mult_r8.v      // Radix-8 Booth Multiplier
+../rtl/misc/div_r4.v         // Radix-4 Integer Divider
+../rtl/misc/div_r2.v         // Radix-2 Integer Divider
+../rtl/misc/sirv_sim_ram.v       // Simulation RAM model
+../rtl/misc/buf_cdc_rx.v         // Clock domain crossing buffer RX (async -> clocked)
+../rtl/misc/buf_cdc_tx.v         // Clock domain crossing buffer TX (clocked -> async)
+../rtl/misc/sync_fifo.v          // Synchronous FIFO
+// Unused modules (commented out):
+// ../rtl/misc/async_buf_cdc.v    // Not used directly
+// ../rtl/misc/buf_cdc.v           // Not used directly
+
+// ================================================================================
+// CLINT (Core Local Interruptor)
+// ================================================================================
+// Note: CLINT provides machine-mode timer and software interrupts
+//       Requires external RTC input (32768 Hz clock) for timer functionality
+//       Address: 0x0200_0000 - 0x0200_FFFF (64 KB, AXI4-Lite)
+//       Registers: MSIP (per hart), MTIMECMP (per hart), MTIME (shared)
+// Compile order: riscv_clint.v before axi_riscv_clint.v (wrapper uses core module)
+../rtl/clint/riscv_clint.v       // CLINT core module (MSIP, MTIMECMP, MTIME registers)
+../rtl/clint/axi_riscv_clint.v   // CLINT AXI4-Lite wrapper (uses axi_slv_to_dev_inf)
+
+// ================================================================================
+// PLIC (Platform-Level Interrupt Controller)
+// ================================================================================
+// Note: PLIC provides external interrupt management for multiple interrupt sources
+//       Address: 0x0C00_0000 - 0x0C03_FFFF (256 KB, AXI4-Lite)
+//       Supports 32 interrupt sources with priority-based routing
+//       Registers: Priority, Pending, Enable, Threshold, Claim/Complete
+//       Output: External interrupt (ext_irq) to core
+// Compile order: riscv_plic.v before axi_riscv_plic.v (wrapper uses core module)
+../rtl/plic/riscv_plic.v         // PLIC core module (priority, pending, enable, threshold, claim)
+../rtl/plic/axi_riscv_plic.v     // PLIC AXI4-Lite wrapper (uses axi_slv_to_dev_inf)
+
+// ================================================================================
+// SYSTEM INTEGRATION (Top-Level)
+// ================================================================================
+// Note: Must be compiled last as it instantiates all other modules
+../rtl/riscv32KC2_system/riscv32KC2_system.v
+

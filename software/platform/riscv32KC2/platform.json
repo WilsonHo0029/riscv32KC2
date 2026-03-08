@@ -1,0 +1,39 @@
+﻿{
+  "name": "riscv32KC2",
+  "title": "RISC-V KC32",
+  "description": "RISC-V KC32 System - RV32IMC_Zicsr_Zifencei Architecture",
+  "homepage": "",
+  "keywords": [
+    "riscv32KC2",
+    "RISC-V",
+    "RV32IMC",
+    "AXI4"
+  ],
+  "license": "Apache-2.0",
+  "version": "0.1.0",
+  "frameworks": {
+    "riscv32KC2-sdk": {
+      "package": "framework-riscv32KC2-sdk",
+      "script": "builder/frameworks/riscv32KC2-sdk.py"
+    }
+  },
+  "packages": {
+    "framework-riscv32KC2-sdk": {
+      "optional": true,
+      "type": "framework",
+      "owner": "riscv32KC2",
+      "version": "~0.1.0"
+    },
+    "toolchain-riscv": {
+      "type": "toolchain",
+      "version": "~1.130200.2"
+    },    
+    "tool-openocd-riscv": {
+      "optional": true,
+      "type": "uploader",
+      "version": "~0.10.1"
+    }
+  }
+}
+
+

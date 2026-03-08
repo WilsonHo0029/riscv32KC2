@@ -1,0 +1,128 @@
+================================================================================
+RISC-V 2-Stage Pipeline Signal Analysis
+File: riscv_pipeline.v
+================================================================================
+
+Pipeline Structure:
+  Stage 1 (IF/ID): Instruction Fetch & Decode
+    - Module: riscv_if_stage
+    - Handles: PC management, Instruction Fetch, Instruction Decoding
+    - Internal Units:
+        * riscv_fetch_pc_unit: Manages PC updates and instruction buffering
+        * riscv_decode: Wrapper for riscv_decoder (Full ID functionality)
+    - Early jump prediction logic is integrated within this stage.
+
+  Stage 2 (EX/MEM/WB): Execute, Memory Access, and Writeback
+    - Module: riscv_final_stage
+    - Handles: Execution (ALU/CSR/Br), Memory Access (L/S), Register Writeback
+    - Internal Units:
+        * riscv_exu: EX phase (ALU, Multiplier, CSRs, Branch Evaluation)
+        * riscv_mem: MEM phase (Load/Store access)
+        * riscv_wb: WB phase (Register File manager)
+    - This stage is purely execution; it consumes control signals decoded in Stage 1.
+
+================================================================================
+STAGE 1 (IF/ID) - FETCH & DECODE SIGNALS
+Module: riscv_if_stage
+================================================================================
+
+1.1 Instruction Fetch Interface (to Memory)
+---------------------------------------------------
+  ifetch_addr            [31:0]  Output: Program Counter for memory fetch
+  ifetch_rvalid                   Output: Request valid signal to I-Cache/Bus
+  instr_i                 [31:0]  Input: Raw instruction word from memory
+  instr_rvalid                    Input: Instruction data valid from memory
+  ifu_ready                       Input: External bus/interface ready signal
+  instr_rready                    Output: Internal ready (High if not stalling)
+
+1.2 Instruction Decoding (riscv_decode Unit)
+---------------------------------------------------
+  instr_o                 [31:0]  Buffered instruction word (Stage 1 internal)
+  if_rd, if_rs1, if_rs2   [4:0]   Decoded register addresses
+  if_sel_imm             [31:0]  Decoded & selected immediate value
+  if_ctrl_signals        [47:0]  Decoded control bits (ALU op, mem req, etc.)
+  if_pc_ra               [31:0]  Calculated Return Address (PC + 4/2)
+
+1.3 Early Jump/Branch Prediction
+---------------------------------------------------
+  dec_jal, dec_bxx, dec_rv32      Decode flags for early jump detection
+  early_jump_target       [31:0] Predicted target address (PC + imm)
+  early_jump_taken                Predicted taken (Static: JAL or Backward Branch)
+  early_jump_valid                High if instruction is valid and predicted taken
+
+1.4 Next PC Generation (riscv_fetch_pc_unit)
+---------------------------------------------------
+  pc                      [31:0] Current Stage 1 Program Counter
+  next_pc1                [31:0] Multiplexed next PC source 
+                                 (Debug -> Trap -> Mispredict -> Early Jump -> Seq)
+  pc1_sel                         Control bit for next_pc1 selection
+
+================================================================================
+IF/ID PIPELINE REGISTERS (Inter-stage)
+Module: riscv_pipeline_regs (Multiple instances)
+================================================================================
+
+Signals passing from Stage 1 -> Stage 2:
+---------------------------------------------------
+  id_pc                   [31:0] PC of the instruction currently in Stage 2
+  id_rd, id_rs1, id_rs2   [4:0]  Destination/Source register indices
+  id_sel_imm              [31:0] Immediate value for ALU/Mem operations
+  id_pc_ra                [31:0] Return address for JAL/JALR instructions
+  id_ctrl_signals         [47:0] Array of control bits for EX/MEM phase
+  id_valid                       Valid flag (Low on flush or empty fetch)
+  id_early_jump_taken            Flag indicating if Stage 1 jumped early
+
+================================================================================
+STAGE 2 (EX/MEM/WB) - EXECUTE, MEMORY, & WRITEBACK
+Module: riscv_final_stage
+================================================================================
+
+2.1 Execution Phase (riscv_exu)
+---------------------------------------------------
+  alu_mem_addr           [31:0]  ALU result / Memory effective address
+  reg_wdata_exu          [31:0]  Candidate writeback data (ALU/CSR/PC_RA)
+  jump_target            [31:0]  Actual jump/branch target for recovery
+  trap_taken                     Exception or interrupt transition detected
+
+2.2 Memory Phase (riscv_mem)
+---------------------------------------------------
+  mem_req, mem_we                Memory access request and write enable
+  mem_addr               [31:0]  Memory address (from EXU)
+  mem_wdata, mem_be      [31:0]  Write data and byte enable masks
+  mem_rdata, mem_rvalid  [31:0]  Read data and valid return from Bus/D-Cache
+  mem_result             [31:0]  Processed (sign-extended) load data
+  mem_pending                    Wait flag for multi-cycle memory access
+
+2.3 Writeback Phase (riscv_wb & riscv_regfile)
+---------------------------------------------------
+  reg_we                         Final write enable (EXU result OR Load result)
+  reg_rd                 [4:0]   Destination register index
+  reg_wdata              [31:0]  Final data written to register file
+
+================================================================================
+PIPELINE CONTROL LOGIC
+================================================================================
+
+3.1 Pipeline Stalls (Calculated in Stage 2)
+---------------------------------------------------
+  pipeline_stall = mem_pending || multdiv_pending || (ctrl_fence && mem_pending) || wfi_stall
+  
+  - Stalls stop the Stage 1 PC and clear the IF/ID pipeline register transition.
+  - Zero-latency combinational logic ensures instructions don't advance until Stage 2 is ready.
+
+3.2 Pipeline Flushes (Calculated in Stage 1)
+---------------------------------------------------
+  pipeline_flush = flush_on_trap || early_not_jump_need_jump || early_jump_wrong_taken
+  
+  - Flushes clear the IF/ID registers and reset the Stage 1 fetch FSM.
+  - Asserted on traps (MRET/DRET/Trap) and branch misprediction corrections.
+
+3.3 Misprediction Recovery
+---------------------------------------------------
+  early_jump_wrong_taken:  Predicted taken, but EXU says NO (Restore sequential PC)
+  early_not_jump_need_jump: Predicted not taken, but EXU says YES (Go to jump_target)
+
+
+================================================================================
+End of Pipeline Signal Analysis
+================================================================================
