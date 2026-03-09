@@ -79,6 +79,8 @@ The top-level module is `riscv32KC2_system`. You can run the integrated testbenc
 ### 💻 Software Development
 Navigate to the [Software SDK](software/framework/framework-riscv32KC2-sdk/README.md) to start developing firmware.
 
+---
 
+## 📜 License
 
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
